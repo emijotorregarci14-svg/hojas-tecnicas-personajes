@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archivo de Arte — El Resurgir</title>
+<style>
+:root{
+  --obsidian:#0B0B0B; --seda:#161616; --platinum:#E5E4E2; --slate:#708090;
+  --nc:#00008B; --fire:#C41E3A; --gunmetal:#2A3239; --amber:#FFBF00;
+  --jade:#5E8F6A; --chrome:#C0C0C0;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--obsidian);color:var(--platinum);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;line-height:1.55;font-size:15px}
+a{color:inherit;text-decoration:none}
+.mono{font-family:"SF Mono",SFMono-Regular,Consolas,"Roboto Mono",Menlo,monospace}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 28px;border-bottom:1px solid var(--gunmetal)}
+.brand{font-size:12px;letter-spacing:.18em;color:var(--slate)}
+.brand b{color:var(--platinum);font-weight:600}
+.badge-conf{font-size:11px;letter-spacing:.22em;color:var(--fire);border:1px solid var(--fire);padding:3px 10px}
+.hero{padding:56px 28px 8px;max-width:1200px;margin:0 auto}
+.hero .kicker{font-size:11px;letter-spacing:.3em;color:var(--slate);text-transform:uppercase}
+.hero h1{font-size:42px;margin:12px 0 8px;font-weight:700;letter-spacing:.03em}
+.hero p{color:var(--slate);max-width:720px;margin:0}
+.hero a{color:#8FB8DE}
+.hero a:hover{text-decoration:underline}
+.row{max-width:1200px;margin:44px auto 0;padding:0 28px}
+.row h2{font-family:"SF Mono",SFMono-Regular,Consolas,monospace;font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:var(--slate);border-bottom:1px solid var(--gunmetal);padding-bottom:10px;margin:0 0 18px;font-weight:400}
+.row h2 b{color:var(--platinum);font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{border:1px solid var(--gunmetal);background:var(--seda);padding:20px;display:flex;flex-direction:column;gap:9px;transition:border-color .15s,box-shadow .15s}
+a.card:hover{border-color:var(--nc);box-shadow:0 0 0 1px var(--nc),0 10px 34px rgba(0,0,139,.28);color:var(--platinum)}
+.card-top{display:flex;justify-content:space-between;align-items:center}
+.num{font-size:13px;color:var(--chrome);letter-spacing:.15em}
+.st{font-size:10px;letter-spacing:.15em;padding:2px 8px;border:1px solid;white-space:nowrap}
+.st-ok{color:var(--jade);border-color:var(--jade)}
+.st-wip{color:var(--amber);border-color:var(--amber)}
+.card h3{margin:0;font-size:20px;font-weight:600}
+.card .func{margin:0;color:var(--slate);font-size:13.5px}
+.card .lema{margin:0;font-style:italic;color:#b9c2cc;font-size:13px;border-top:1px solid var(--gunmetal);padding-top:9px}
+.chips{display:flex;gap:6px;margin-top:auto;padding-top:10px}
+.chips i{width:16px;height:16px;border:1px solid var(--gunmetal);display:block}
+.pend{display:flex;flex-wrap:wrap;gap:10px}
+.pend span{border:1px dashed var(--gunmetal);color:var(--slate);font-size:12.5px;padding:8px 14px}
+.pend b{color:var(--platinum);font-weight:600}
+.pend em{font-style:normal;color:#5c6670}
+footer{max-width:1200px;margin:64px auto 0;padding:20px 28px 40px;border-top:1px solid var(--gunmetal);color:var(--slate);font-size:11.5px;letter-spacing:.06em}
+footer a{color:#8FB8DE}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand mono"><b>NOVUS CORP</b> · DEPTO ARTE · ARCHIVO DE ARTE</div>
+  <div class="badge-conf mono">CONFIDENCIAL</div>
+</div>
+
+<header class="hero">
+  <div class="kicker mono">"El Resurgir" · Biblia Maestra v5.0 · 30 AGOSTO 2026</div>
+  <h1>ARCHIVO DE ARTE</h1>
+  <p>Hojas técnicas de personajes y elementos canónicos. El canon vive en la
+  <a href="../BIBLIA_MAESTRA_v5.0.md">Biblia Maestra v5.0</a>; cada ficha es texto + nombres canónicos de activo
+  (regla §76: nada de base64). Flujo estricto: UN activo → presentar → aprobar → archivar con nombre canónico (§62.2).</p>
+</header>
+
+<section class="row">
+  <h2>01 · <b>PROTAGONISTAS / CATALIZADORES</b></h2>
+  <div class="grid">
+    <a class="card" href="fichas/FICHA_00_EL_PELIRROJO.html">
+      <div class="card-top"><span class="num mono">FICHA / 00</span><span class="st st-ok mono">DISPONIBLE</span></div>
+      <h3>El Pelirrojo</h3>
+      <p class="func">Protagonista · Único humano imperfecto · NC-PROTAC</p>
+      <p class="lema">"El insecto en la caja de cristal. Piel que sangra."</p>
+      <div class="chips"><i style="background:#FCE5CD" title="#FCE5CD Pale Peach"></i><i style="background:#D88C7B" title="#D88C7B Muted Coral"></i><i style="background:#ABAAB8" title="#ABAAB8 Cool Pearl Grey"></i><i style="background:#C47A4E" title="#C47A4E Cobre"></i></div>
+    </a>
+    <div class="card">
+      <div class="card-top"><span class="num mono">FICHA / 04</span><span class="st st-wip mono">EN CONSTRUCCIÓN</span></div>
+      <h3>El Ejecutivo NC</h3>
+      <p class="func">Catalizador · Porta el secreto · 42–45 años · 182 cm</p>
+      <p class="lema">Presencia del poder corporativo. Nunca frontal nítido.</p>
+      <div class="chips"><i style="background:#36454F" title="#36454F Charcoal Grey"></i><i style="background:#C0C0C0" title="#C0C0C0 Chrome Silver"></i><i style="background:#0B0B0B" title="#0B0B0B Obsidian"></i></div>
+    </div>
+    <div class="card">
+      <div class="card-top"><span class="num mono">FICHA / 05</span><span class="st st-wip mono">EN CONSTRUCCIÓN</span></div>
+      <h3>El Mercenario — El Impoluto</h3>
+      <p class="func">Saboteador BSL-4 · Ejecutor · Depredador · 186 cm</p>
+      <p class="lema">Limpieza quirúrgica. La limpieza es su marca.</p>
+      <div class="chips"><i style="background:#0B0B0B" title="#0B0B0B Obsidian"></i><i style="background:#D8D2CC" title="#D8D2CC Piel fría"></i><i style="background:#2A3239" title="#2A3239 Gunmetal"></i><i style="background:#00008B" title="#00008B Línea NC"></i></div>
+    </div>
+  </div>
+</section>
+
+<section class="row">
+  <h2>02 · <b>TRÍO DE PODER — OPRESIÓN CORPORATIVA</b></h2>
+  <div class="grid">
+    <div class="card">
+      <div class="card-top"><span class="num mono">FICHA / 01</span><span class="st st-wip mono">EN CONSTRUCCIÓN</span></div>
+      <h3>El Coleta</h3>
+      <p class="func">Protocolo, presión, silencio · 36 años · 188 cm</p>
+      <p class="lema">"La línea que corta el aire. Nunca explica."</p>
+      <div class="chips"><i style="background:#2C2C2C" title="#2C2C2C Charcoal"></i><i style="background:#F7F7F5" title="#F7F7F5 Camisa"></i><i style="background:#C0C0C0" title="#C0C0C0 Reloj platino"></i></div>
+    </div>
+    <div class="card">
+      <div class="card-top"><span class="num mono">FICHA / 02</span><span class="st st-wip mono">EN CONSTRUCCIÓN</span></div>
+      <h3>El Rubio</h3>
+      <p class="func">Heredero estético · Rostro público · 30 años · 185 cm</p>
+      <p class="lema">"La belleza como violencia suave." Corbata prohibida.</p>
+      <div class="chips"><i style="background:#F3EDE3" title="#F3EDE3 Marfil"></i><i style="background:#6BA3C7" title="#6BA3C7 Hielo"></i><i style="background:#D4B896" title="#D4B896 Champán"></i></div>
+    </div>
+    <div class="card">
+      <div class="card-top"><span class="num mono">FICHA / 03</span><span class="st st-wip mono">EN CONSTRUCCIÓN</span></div>
+      <h3>La Japonesa</h3>
+      <p class="func">Control, protocolo · 38 años · 172 cm + 8 stiletto</p>
+      <p class="lema">"La que no necesita voz." Kanzashi jade ume innegociable.</p>
+      <div class="chips"><i style="background:#0B0B0B" title="#0B0B0B Obsidiana"></i><i style="background:#161616" title="#161616 Seda"></i><i style="background:#5E8F6A" title="#5E8F6A Jade"></i></div>
+    </div>
+  </div>
+</section>
+
+<section class="row">
+  <h2>03 · <b>SUB-CRÓNICA 24H NOTICIAS</b> · EL RELOJ ES LEY</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="card-top"><span class="num mono">FICHA / 18</span><span class="st st-wip mono">EN CONSTRUCCIÓN</span></div>
+      <h3>Valeria Sanz</h3>
+      <p class="func">Presentadora 24H · Plató · LIVE 08:17 · Navy</p>
+      <p class="lema">"La máscara calmada del caos."</p>
+      <div class="chips"><i style="background:#C41E3A" title="#C41E3A Rojo directo 24H"></i><i style="background:#161616" title="Navy ⚠️ HEX pendiente"></i></div>
+    </div>
+    <div class="card">
+      <div class="card-top"><span class="num mono">FICHA / 19</span><span class="st st-wip mono">EN CONSTRUCCIÓN</span></div>
+      <h3>Carlos Ramírez</h3>
+      <p class="func">Reportero 24H · Vivo desde helicóptero · LIVE 08:37</p>
+      <p class="lema">"La verdad pública aplastada por el caos." Muere o desaparece.</p>
+      <div class="chips"><i style="background:#F0C000" title="#F0C000 Hi-vis"></i><i style="background:#C41E3A" title="#C41E3A Rojo directo"></i></div>
+    </div>
+    <div class="card">
+      <div class="card-top"><span class="num mono">FICHA / 20</span><span class="st st-wip mono">EN CONSTRUCCIÓN</span></div>
+      <h3>Zona BSL-4</h3>
+      <p class="func">Zona de incidente · Madrid 2030 · LIVE 08:17 → 08:37</p>
+      <p class="lema">"Hormigón, lluvia y una maquinaria que no explica lo que guarda."</p>
+      <div class="chips"><i style="background:#C41E3A" title="#C41E3A Rojo directo"></i><i style="background:#F0C000" title="#F0C000 Hi-vis"></i><i style="background:#4A5D23" title="Hormigón ⚠️ HEX pendiente"></i></div>
+    </div>
+  </div>
+</section>
+
+<section class="row">
+  <h2>04 · <b>PENDIENTES DE FICHA</b> <em style="color:#5c6670;text-transform:none;letter-spacing:.05em">— lo no dictado se marca "pendiente de definir". No se inventa (§62.2)</em></h2>
+  <div class="pend">
+    <span><b>El Vigilante</b> <em>· §69 / §7.1</em></span>
+    <span><b>Alfa &amp; Omega</b> <em>· §16.19</em></span>
+    <span><b>El Músico — Vector Silencioso</b> <em>· §6.7</em></span>
+    <span><b>El Magnate Corporativo · Kingpin</b> <em>· §23.2</em></span>
+    <span><b>El Curador Genético</b> <em>· §16.18</em></span>
+    <span><b>El Rastreador</b> <em>· §63.1</em></span>
+    <span><b>La Forjadora</b> <em>· §63.2</em></span>
+    <span><b>Janitor Joe — El Infectado</b> <em>· §63.7</em></span>
+  </div>
+</section>
+
+<footer>
+  EL CANON VIVE EN LA <a href="../BIBLIA_MAESTRA_v5.0.md">BIBLIA MAESTRA v5.0</a> · EL HEX ES LEY (§24) · FICHAS SOLO TEXTO, NADA DE BASE64 (§76) ·
+  FLUJO: UN ACTIVO → PRESENTAR → APROBAR → ARCHIVAR (§62.2)
+</footer>
+
+</body>
+</html>
