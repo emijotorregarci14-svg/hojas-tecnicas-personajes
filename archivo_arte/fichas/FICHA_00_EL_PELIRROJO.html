@@ -3,234 +3,234 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FICHA 00 — El Pelirrojo · Archivo de Arte · El Resurgir</title>
+<title>El Pelirrojo · NC-PROTAC / 00 · El Resurgir</title>
 <style>
 :root{
-  --obsidian:#0B0B0B; --seda:#161616; --platinum:#E5E4E2; --slate:#708090;
-  --nc:#00008B; --fire:#C41E3A; --gunmetal:#2A3239; --amber:#FFBF00;
-  --jade:#5E8F6A; --chrome:#C0C0C0;
+  --obsidian:#0B0B0B; --seda:#111111; --platinum:#E5E4E2; --slate:#708090;
+  --fire:#C41E3A; --copper:#C47A4E; --gunmetal:#2A3239; --jade:#5E8F6A;
+  --chrome:#C0C0C0; --link:#8FB8DE;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--obsidian);color:var(--platinum);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;line-height:1.55;font-size:15px}
-a{color:#8FB8DE;text-decoration:none}
-a:hover{text-decoration:underline}
+body{margin:0;background:var(--obsidian);color:var(--platinum);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;line-height:1.5;font-size:15px}
+a{color:inherit;text-decoration:none}
 .mono{font-family:"SF Mono",SFMono-Regular,Consolas,"Roboto Mono",Menlo,monospace}
-.topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 28px;border-bottom:1px solid var(--gunmetal);position:sticky;top:0;background:rgba(11,11,11,.96);backdrop-filter:blur(4px);z-index:5}
-.brand{font-size:12px;letter-spacing:.18em;color:var(--slate)}
-.brand b{color:var(--platinum);font-weight:600}
-.badge-conf{font-size:11px;letter-spacing:.22em;color:var(--fire);border:1px solid var(--fire);padding:3px 10px}
-.wrap{max-width:1000px;margin:0 auto;padding:36px 28px 80px}
-.masthead{border-bottom:1px solid var(--gunmetal);padding-bottom:28px;margin-bottom:8px}
-.masthead .code{font-size:11px;letter-spacing:.3em;color:var(--slate);text-transform:uppercase}
-.masthead h1{font-size:46px;margin:10px 0 2px;font-weight:700;letter-spacing:.02em}
-.masthead .sub{color:var(--chrome);font-size:15px;letter-spacing:.12em;text-transform:uppercase}
-.lema{margin:26px 0 0;padding:14px 20px;border-left:3px solid var(--nc);background:var(--seda);font-style:italic;color:#c6cdd4;font-size:16.5px}
-section{margin-top:44px}
-h2{font-family:"SF Mono",SFMono-Regular,Consolas,monospace;font-size:12.5px;letter-spacing:.25em;text-transform:uppercase;color:var(--slate);border-bottom:1px solid var(--gunmetal);padding-bottom:10px;margin:0 0 16px;font-weight:400}
-h2 b{color:var(--platinum);font-weight:600}
-table{width:100%;border-collapse:collapse;margin:14px 0}
-th{font-family:"SF Mono",SFMono-Regular,Consolas,monospace;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--slate);text-align:left;padding:8px 12px;border-bottom:1px solid var(--gunmetal);font-weight:400}
-td{padding:8px 12px;border-bottom:1px solid #1d2126;vertical-align:top}
-td .mono{font-size:13px;color:var(--chrome)}
-.leyes{counter-reset:ley;list-style:none;padding:0;margin:14px 0}
-.leyes li{counter-increment:ley;padding:10px 16px;border:1px solid var(--gunmetal);border-left:3px solid var(--fire);margin-bottom:8px;background:var(--seda)}
-.leyes li .tag{font-family:"SF Mono",Consolas,monospace;font-size:10px;color:var(--fire);letter-spacing:.2em;display:block;margin-bottom:3px}
-.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin:14px 0}
-.swatch{border:1px solid var(--gunmetal);background:var(--seda)}
-.swatch .chip{height:52px}
-.swatch .meta{padding:8px 10px}
-.swatch .hex{font-size:12px;color:var(--chrome)}
-.swatch .name{font-size:10.5px;color:var(--slate);text-transform:uppercase;letter-spacing:.08em}
-.swatch.hl{border-color:var(--nc);box-shadow:0 0 0 1px var(--nc)}
-pre{background:#0f1216;border:1px solid var(--gunmetal);padding:16px;font-size:12.5px;line-height:1.6;overflow-x:auto;color:#cfd6dd;margin:14px 0}
-pre .neg{color:#e08a97}
-.callout{border:1px solid var(--amber);background:rgba(255,191,0,.05);padding:12px 16px;margin:16px 0}
-.callout .tag{color:var(--amber);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase}
-.note{border:1px solid var(--gunmetal);border-left:3px solid var(--nc);background:var(--seda);padding:12px 16px;margin:14px 0}
-.note .tag{color:var(--nc);filter:brightness(1.9);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase}
-.st{font-size:10px;letter-spacing:.15em;padding:2px 8px;border:1px solid;white-space:nowrap}
-.st-ok{color:var(--jade);border-color:var(--jade)}
-.st-pend{color:var(--amber);border-color:var(--amber)}
-.st-wip{color:var(--slate);border-color:var(--slate)}
-footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--gunmetal);color:var(--slate);font-size:11.5px;letter-spacing:.06em}
+.wrap{max-width:1120px;margin:0 auto;padding:22px 28px 72px}
+
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:28px}
+.top .left{font-size:11px;letter-spacing:.2em;color:var(--slate);text-transform:uppercase}
+.top .right{font-size:11px;letter-spacing:.18em;color:var(--fire);text-transform:uppercase}
+
+h1{font-family:Georgia,"Times New Roman",serif;font-size:64px;font-weight:500;margin:0 0 18px;letter-spacing:-.02em;line-height:1}
+
+.mast{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;margin-bottom:22px}
+.meta .row{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#b9c0c6;margin:0 0 6px}
+.lema{margin:0;text-align:right;font-style:italic;color:var(--copper);font-size:20px;line-height:1.35;font-family:Georgia,"Times New Roman",serif}
+
+.nav{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 28px}
+.pill{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;border:1px solid #3a3a3a;color:#c5c5c5;padding:8px 14px;border-radius:999px}
+.pill:hover{border-color:#6a6a6a;color:#fff}
+.pill.on{background:#1a1a1a;border-color:#d8d8d8;color:#fff;font-weight:600}
+.pill.off{opacity:.55;cursor:default}
+
+.asset{background:#0e0e0e;border:1px solid #1c1c1c;border-radius:8px;overflow:hidden;margin:0 0 22px}
+.asset .frame{background:#141414;min-height:220px;display:flex;align-items:center;justify-content:center}
+.asset img{width:100%;display:block;background:#d8d8d8}
+.asset .ph{color:#5c6670;font-size:12.5px;letter-spacing:.08em;text-align:center;padding:48px 16px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 14px 12px;flex-wrap:wrap}
+.bar .id{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#c9c9c9}
+.bar .id span{color:#7a7a7a;margin-left:10px;font-weight:400}
+.btns{display:flex;gap:8px}
+.btn{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;border:1px solid #4a4a4a;color:#ddd;padding:7px 12px;border-radius:4px}
+.btn:hover{border-color:#aaa;color:#fff}
+
+h2{font-family:Georgia,"Times New Roman",serif;font-size:36px;font-weight:500;margin:48px 0 22px}
+
+.matriz{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:28px}
+.col h3{margin:0 0 14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fire);font-weight:600}
+.field{margin:0 0 14px}
+.field .k{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);margin-bottom:2px}
+.field .v{color:var(--platinum)}
+.leyes{list-style:none;padding:0;margin:0}
+.leyes li{position:relative;padding:0 0 12px 14px;color:var(--platinum)}
+.leyes li:before{content:"–";position:absolute;left:0;color:#888}
+
+.swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:14px 12px}
+.swatch .chip{height:72px;border-radius:4px;border:1px solid #222}
+.swatch .lab{margin-top:8px;font-size:12px;color:#d5d5d5;line-height:1.35}
+.swatch .lab b{font-weight:600}
+
+.lock h2{margin-bottom:14px}
+.lock pre{margin:0;background:#0e0e0e;border:1px solid #2a2a2a;border-left:3px solid var(--fire);padding:18px 20px;white-space:pre-wrap;font-size:13px;line-height:1.55;color:#e8e8e8;overflow-x:auto}
+.lock .neg{color:#e08a97}
+
+footer{margin-top:48px;padding-top:18px;border-top:1px solid #1c1c1c;color:#6a6a6a;font-size:11px;letter-spacing:.06em;text-align:center;line-height:1.7}
+footer a{color:var(--link)}
+
+@media (max-width:900px){
+  h1{font-size:42px}
+  .mast,.matriz,.swatches{grid-template-columns:1fr}
+  .lema{text-align:left}
+  .swatches{grid-template-columns:repeat(2,1fr)}
+}
 </style>
 </head>
 <body>
-
-<div class="topbar">
-  <a href="../index.html" class="brand mono">← ÍNDICE · ARCHIVO DE ARTE</a>
-  <div class="badge-conf mono">CONFIDENCIAL</div>
-</div>
-
 <div class="wrap">
 
-<header class="masthead">
-  <div class="code mono">NOVUS CORP · DEPTO ARTE · CONFIDENCIAL · NC-PROTAC / 00</div>
-  <h1>EL PELIRROJO</h1>
-  <div class="sub mono">HUMANO IMPERFECTO · LOOK A — METRO / ESCALERAS</div>
-</header>
+  <div class="top">
+    <div class="left mono">Novus Corp · Depto Arte · Confidencial</div>
+    <div class="right mono">NC-PROTAC / 00 · El Resurgir</div>
+  </div>
 
-<p class="lema">"El único elemento imperfecto. El insecto en la caja de cristal. Piel que sangra."</p>
+  <h1>El Pelirrojo</h1>
 
-<section id="matriz">
-<h2>01 · <b>MATRIZ TÉCNICA</b> — IDENTIDAD</h2>
-<table>
-<tr><th>Campo</th><th>Valor</th></tr>
-<tr><td>Alias</td><td>El Pelirrojo / El Insecto</td></tr>
-<tr><td>Función</td><td>Protagonista — único humano imperfecto</td></tr>
-<tr><td>Edad</td><td>18–19 años</td></tr>
-<tr><td>Altura</td><td>180 cm</td></tr>
-<tr><td>Rostro</td><td>Óvalo largo, frente alta</td></tr>
-<tr><td>Ojos</td><td>Azul-gris, párpado pesado</td></tr>
-<tr><td>Cabello</td><td>Cobre-naranja, volumen corona</td></tr>
-<tr><td>Piel</td><td><span class="mono">#FCE5CD</span> + <span class="mono">#EFBCA8</span> + <span class="mono">#D88C7B</span> (Humano Imperfecto)</td></tr>
-</table>
-<div class="note"><span class="tag">Rasgo blindado</span><br>
-El personaje <b>NO lleva barba</b> — "faint copper peach-fuzz, no beard" (vello melocotón cobrizo, sin barba). Corrige la ficha anterior (secs. 26/39).<br>
-<b>Nota del Director de Arte (resuelta, §58.9):</b> el vello rojizo visible es vello facial puberal incipiente, NO barba adulta. Aprobado por el usuario como canón.
-</div>
-<h3 style="margin:26px 0 4px;font-size:14px">Miradas por escenario (ley 4)</h3>
-<table>
-<tr><th>Escenario</th><th>Mirada</th></tr>
-<tr><td>Plaza Esperanza</td><td>45° arriba — pupilas a la planta 30 (Kingpin)</td></tr>
-<tr><td>Vagón Línea NC</td><td>Abajo — absorto en el catálogo</td></tr>
-<tr><td>Escalera (Look A)</td><td>A cámara</td></tr>
-</table>
-</section>
+  <div class="mast">
+    <div class="meta">
+      <p class="row">Humano imperfecto · NC-PROTAC / 00</p>
+      <p class="row">Look A · Metro / Escaleras</p>
+      <p class="row">Poro <span class="mono">#D88C7B</span> · Bomber <span class="mono">#ABAAB8</span></p>
+    </div>
+    <p class="lema">El único elemento imperfecto. El insecto en la caja de cristal. Piel que sangra.</p>
+  </div>
 
-<section id="bloqueos">
-<h2>02 · <b>BLOQUEOS DE RODAJE</b> — LEYES</h2>
-<ol class="leyes">
-<li><span class="tag">LEY 1</span>Piel NUNCA porcelana. Poros visibles SIEMPRE.</li>
-<li><span class="tag">LEY 2</span>Acné <span class="mono">#D88C7B</span> en mejillas/mandíbula — pápulas, NO quistes horror.</li>
-<li><span class="tag">LEY 3</span>SSS <span class="mono">#EFBCA8</span> en mejillas/nariz, brillo sebo zona T.</li>
-<li><span class="tag">LEY 4</span>Mirada 45° arriba en plaza, abajo en vagón, a cámara en escalera.</li>
-<li><span class="tag">LEY 5</span>Bomber base Cool Pearl Grey <span class="mono">#ABAAB8</span>; cualquier matiz cálido o azulado procede SOLO de la iluminación.</li>
-<li><span class="tag">LEY 6</span>Catálogo es prop héroe — portada legible SIEMPRE.</li>
-<li><span class="tag">LEY 7</span>Él es poro. Trío es porcelana.</li>
-</ol>
-</section>
+  <nav class="nav">
+    <a class="pill" href="../index.html">Índice</a>
+    <a class="pill on" href="FICHA_00_EL_PELIRROJO.html">00 Pelirrojo</a>
+    <span class="pill off" title="Pendiente de ficha">01 Coleta</span>
+    <span class="pill off" title="Pendiente de ficha">02 Rubio</span>
+    <span class="pill off" title="Pendiente de ficha">03 Japonesa</span>
+    <span class="pill off" title="Pendiente de ficha">18 Valeria Sanz</span>
+    <span class="pill off" title="Pendiente de ficha">19 Carlos Ramírez</span>
+    <span class="pill off" title="Pendiente de ficha">20 Zona BSL-4</span>
+  </nav>
 
-<section id="vestuario">
-<h2>03 · <b>VESTUARIO</b> — LOOK A/B (CANON ACTUALIZADO)</h2>
-<table>
-<tr><th>Prenda</th><th>Detalle</th></tr>
-<tr><td><b>Bomber</b></td><td><b>Cool Pearl Grey <span class="mono">#ABAAB8</span></b> — nylon satinado, canalé; sombras profundas <span class="mono">#7C7F93</span>; brillos perlados <span class="mono">#CBC8D1</span></td></tr>
-<tr><td>Camiseta</td><td>Blanca básica <span class="mono">#F4F1EC</span> / Cruda <span class="mono">#FFF8DC</span></td></tr>
-<tr><td>Pantalón</td><td>Denim carbón oscuro</td></tr>
-<tr><td>Calzado</td><td>Canvas gris oscuro</td></tr>
-<tr><td>Prop</td><td>Catálogo comercial Bio-Pet mate — spread + portada</td></tr>
-</table>
-<div class="callout"><span class="tag">⚠ RECON — NUEVO BOMBER</span><br>
-Se sustituye el anterior <span class="mono">Stone Grey #B0B0B0</span> (mate) por <b><span class="mono">Cool Pearl Grey #ABAAB8</span></b> (nylon satinado, canalé). Todas las referencias anteriores a bomber <span class="mono">#B0B0B0</span> (secs. 26, 39, 40, 57.2, 37.2, vestuario) quedan <b>OBSOLETAS</b> salvo prompts ya archivados (lección de continuidad §41). Todo prompt nuevo usa <span class="mono">#ABAAB8</span> con luces/sombras.
-</div>
-</section>
+  <figure class="asset" id="turnaround">
+    <div class="frame">
+      <img src="../assets/PELIRROJO_01_TURNAROUND.jpg" alt="Turnaround El Pelirrojo 0° / 45° / 90° / 180°" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph mono',textContent:'PELIRROJO_01_TURNAROUND.jpg · pendiente de archivo'}))">
+    </div>
+    <figcaption class="bar">
+      <div class="id mono">PELIRROJO_01_TURNAROUND.jpg <span>Turnaround · Bomber Cool Pearl Grey · 0° / 45° / 90° / 180°</span></div>
+      <div class="btns">
+        <a class="btn mono" href="../assets/PELIRROJO_01_TURNAROUND.jpg" download>↓ Descargar</a>
+        <a class="btn mono" href="../assets/PELIRROJO_01_TURNAROUND.jpg" target="_blank" rel="noopener">Ver original</a>
+      </div>
+    </figcaption>
+  </figure>
 
-<section id="paleta">
-<h2>04 · <b>PALETA BLOQUEADA</b> — HUMANO IMPERFECTO vs PORCELANA</h2>
-<div class="swatches">
-  <div class="swatch"><div class="chip" style="background:#FCE5CD"></div><div class="meta"><div class="hex mono">#FCE5CD</div><div class="name">Base · Pale Peach</div></div></div>
-  <div class="swatch"><div class="chip" style="background:#EFBCA8"></div><div class="meta"><div class="hex mono">#EFBCA8</div><div class="name">Rubor/SSS · Rosy Beige</div></div></div>
-  <div class="swatch"><div class="chip" style="background:#D88C7B"></div><div class="meta"><div class="hex mono">#D88C7B</div><div class="name">Acné · Muted Coral</div></div></div>
-  <div class="swatch"><div class="chip" style="background:#C4A882"></div><div class="meta"><div class="hex mono">#C4A882</div><div class="name">Sombra · Warm Taupe</div></div></div>
-  <div class="swatch hl"><div class="chip" style="background:#ABAAB8"></div><div class="meta"><div class="hex mono">#ABAAB8</div><div class="name">Bomber · Cool Pearl Grey</div></div></div>
-  <div class="swatch"><div class="chip" style="background:#7C7F93"></div><div class="meta"><div class="hex mono">#7C7F93</div><div class="name">Sombra bomber · Deep Cool Shadow</div></div></div>
-  <div class="swatch"><div class="chip" style="background:#CBC8D1"></div><div class="meta"><div class="hex mono">#CBC8D1</div><div class="name">Luz bomber · Pearlescent Highlight</div></div></div>
-  <div class="swatch"><div class="chip" style="background:#C47A4E"></div><div class="meta"><div class="hex mono">#C47A4E</div><div class="name">Cobre</div></div></div>
-</div>
-</section>
+  <figure class="asset" id="rostros">
+    <div class="frame">
+      <img src="../assets/PELIRROJO_02_ROSTROS.jpg" alt="Rostros frente / tres cuartos / perfil" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph mono',textContent:'PELIRROJO_02_ROSTROS.jpg · pendiente de archivo'}))">
+    </div>
+    <figcaption class="bar">
+      <div class="id mono">PELIRROJO_02_ROSTROS.jpg <span>Frente / Tres cuartos / Perfil · Humano imperfecto · Poros + acné</span></div>
+      <div class="btns">
+        <a class="btn mono" href="../assets/PELIRROJO_02_ROSTROS.jpg" download>↓ Descargar</a>
+        <a class="btn mono" href="../assets/PELIRROJO_02_ROSTROS.jpg" target="_blank" rel="noopener">Ver original</a>
+      </div>
+    </figcaption>
+  </figure>
 
-<section id="lock">
-<h2>05 · <b>LOCK DE IDENTIDAD + SKIN-NODE</b> — pegar en TODO prompt del personaje</h2>
-<pre>Use the attached master photograph as a strict identity lock. Do not recast or regenerate the face. A strong athletic young man, 18–19, 180cm, abundant copper-orange wavy hair volume on crown, skin base #FCE5CD pale peach ivory, soft rosy beige #EFBCA8 SSS transitions on cheeks and nose, muted coral #D88C7B acne papules on cheeks and jaw, warm taupe #C4A882 occlusion, visible pores, freckles, slight oil sheen T-zone, faint copper peach-fuzz, no beard. Cool Pearl Grey #ABAAB8 satin-nylon bomber with deep cool shadows #7C7F93 and pearlescent highlights #CBC8D1 over white T-shirt, dark charcoal jeans, grey sneakers. Holds the approved white matte Bio-Pet Boutique commercial brochure — cover with four newborn Chihuahua puppies sleeping together on Cream White #F5F5DC silk, plus the approved back cover — Champagne Gold dog logo, Royal Purple title, tagline The Pinnacle of Biological Companionship. The four puppies are commercial artwork only, not Alfa and Omega. Photoreal live-action, no airbrush, no porcelain, no plastic.
+  <figure class="asset" id="escalera">
+    <div class="frame">
+      <img src="../assets/PELIRROJO_04_ESCALERA.jpg" alt="Look A metro / escaleras, mirada a cámara, catálogo" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph mono',textContent:'PELIRROJO_04_ESCALERA.jpg · pendiente de archivo'}))">
+    </div>
+    <figcaption class="bar">
+      <div class="id mono">PELIRROJO_04_ESCALERA.jpg <span>Look A · Metro / Escaleras · Mirada a cámara · Catálogo</span></div>
+      <div class="btns">
+        <a class="btn mono" href="../assets/PELIRROJO_04_ESCALERA.jpg" download>↓ Descargar</a>
+        <a class="btn mono" href="../assets/PELIRROJO_04_ESCALERA.jpg" target="_blank" rel="noopener">Ver original</a>
+      </div>
+    </figcaption>
+  </figure>
+
+  <figure class="asset" id="spread">
+    <div class="frame">
+      <img src="../assets/PELIRROJO_07_SPREAD.jpg" alt="Catálogo Bio-Pet abierto, spread comercial" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph mono',textContent:'PELIRROJO_07_SPREAD.jpg · pendiente de archivo'}))">
+    </div>
+    <figcaption class="bar">
+      <div class="id mono">PELIRROJO_07_SPREAD.jpg <span>Prop héroe · Catálogo abierto · Spread comercial</span></div>
+      <div class="btns">
+        <a class="btn mono" href="../assets/PELIRROJO_07_SPREAD.jpg" download>↓ Descargar</a>
+        <a class="btn mono" href="../assets/PELIRROJO_07_SPREAD.jpg" target="_blank" rel="noopener">Ver original</a>
+      </div>
+    </figcaption>
+  </figure>
+
+  <figure class="asset" id="portada">
+    <div class="frame">
+      <img src="../assets/PELIRROJO_07_PORTADA.jpg" alt="Portada cerrada Bio-Pet Boutique" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph mono',textContent:'PELIRROJO_07_PORTADA.jpg · pendiente de archivo'}))">
+    </div>
+    <figcaption class="bar">
+      <div class="id mono">PELIRROJO_07_PORTADA.jpg <span>Prop héroe · Portada cerrada · Bio-Pet Boutique</span></div>
+      <div class="btns">
+        <a class="btn mono" href="../assets/PELIRROJO_07_PORTADA.jpg" download>↓ Descargar</a>
+        <a class="btn mono" href="../assets/PELIRROJO_07_PORTADA.jpg" target="_blank" rel="noopener">Ver original</a>
+      </div>
+    </figcaption>
+  </figure>
+
+  <h2>Matriz técnica</h2>
+  <div class="matriz">
+    <div class="col">
+      <h3>Identidad</h3>
+      <div class="field"><div class="k">Alias</div><div class="v">El Pelirrojo / El Insecto</div></div>
+      <div class="field"><div class="k">Función</div><div class="v">Protagonista — único humano imperfecto</div></div>
+      <div class="field"><div class="k">Edad</div><div class="v">18–19 años</div></div>
+      <div class="field"><div class="k">Altura</div><div class="v">180 cm</div></div>
+      <div class="field"><div class="k">Rostro</div><div class="v">Óvalo largo, frente alta</div></div>
+      <div class="field"><div class="k">Ojos</div><div class="v">Azul-gris, párpado pesado</div></div>
+      <div class="field"><div class="k">Cabello</div><div class="v">Cobre-naranja, volumen corona</div></div>
+      <div class="field"><div class="k">Piel</div><div class="v">Humano Imperfecto</div></div>
+    </div>
+    <div class="col">
+      <h3>Look bloqueado</h3>
+      <div class="field"><div class="k">Bomber</div><div class="v">Cool Pearl Grey <span class="mono">#ABAAB8</span> · nylon satinado · canalé</div></div>
+      <div class="field"><div class="k">Sombras</div><div class="v mono">#7C7F93</div></div>
+      <div class="field"><div class="k">Brillos</div><div class="v mono">#CBC8D1</div></div>
+      <div class="field"><div class="k">Camiseta</div><div class="v">Blanca básica <span class="mono">#F4F1EC</span> / cruda <span class="mono">#FFF8DC</span></div></div>
+      <div class="field"><div class="k">Pantalón</div><div class="v">Denim carbón oscuro</div></div>
+      <div class="field"><div class="k">Calzado</div><div class="v">Canvas gris oscuro</div></div>
+      <div class="field"><div class="k">Prop</div><div class="v">Catálogo Bio-Pet mate — spread + portada</div></div>
+    </div>
+    <div class="col">
+      <h3>Bloqueos (leyes)</h3>
+      <ul class="leyes">
+        <li>Piel NUNCA porcelana. Poros visibles SIEMPRE.</li>
+        <li>Acné <span class="mono">#D88C7B</span> en mejillas/mandíbula — pápulas, no quistes.</li>
+        <li>SSS <span class="mono">#EFBCA8</span> en mejillas/nariz, brillo sebo zona T.</li>
+        <li>Mirada 45° arriba en plaza, abajo en vagón, a cámara en escalera.</li>
+        <li>Bomber base Cool Pearl Grey <span class="mono">#ABAAB8</span>; matiz cálido/azul solo de iluminación.</li>
+        <li>Catálogo es prop héroe — portada legible SIEMPRE.</li>
+        <li>Él es poro. Trío es porcelana.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Paleta bloqueada</h2>
+  <div class="swatches">
+    <div class="swatch"><div class="chip" style="background:#FCE5CD"></div><div class="lab"><b class="mono">#FCE5CD</b><br>Pale Peach — BASE</div></div>
+    <div class="swatch"><div class="chip" style="background:#EFBCA8"></div><div class="lab"><b class="mono">#EFBCA8</b><br>Rosy Beige — RUBOR/SSS</div></div>
+    <div class="swatch"><div class="chip" style="background:#D88C7B"></div><div class="lab"><b class="mono">#D88C7B</b><br>Muted Coral — ACNÉ</div></div>
+    <div class="swatch"><div class="chip" style="background:#C4A882"></div><div class="lab"><b class="mono">#C4A882</b><br>Warm Taupe — SOMBRA</div></div>
+    <div class="swatch"><div class="chip" style="background:#ABAAB8"></div><div class="lab"><b class="mono">#ABAAB8</b><br>Cool Pearl Grey — BOMBER</div></div>
+    <div class="swatch"><div class="chip" style="background:#7C7F93"></div><div class="lab"><b class="mono">#7C7F93</b><br>Deep Cool Shadow</div></div>
+    <div class="swatch"><div class="chip" style="background:#CBC8D1"></div><div class="lab"><b class="mono">#CBC8D1</b><br>Pearlescent Highlight</div></div>
+    <div class="swatch"><div class="chip" style="background:#C47A4E"></div><div class="lab"><b class="mono">#C47A4E</b><br>Cobre</div></div>
+  </div>
+
+  <section class="lock">
+    <h2>Lock de personaje · pegar en prompt</h2>
+    <pre>Use the attached master photograph as a strict identity lock. Do not recast or regenerate the face. A strong athletic young man, 18–19, 180cm, abundant copper-orange wavy hair volume on crown, skin base #FCE5CD pale peach ivory, soft rosy beige #EFBCA8 SSS transitions on cheeks and nose, muted coral #D88C7B acne papules on cheeks and jaw, warm taupe #C4A882 occlusion, visible pores, freckles, slight oil sheen T-zone, faint copper peach-fuzz, no beard. Cool Pearl Grey #ABAAB8 satin-nylon bomber with deep cool shadows #7C7F93 and pearlescent highlights #CBC8D1 over white T-shirt, dark charcoal jeans, grey sneakers. Holds the approved white matte Bio-Pet Boutique commercial brochure — cover with four newborn Chihuahua puppies sleeping together on Cream White #F5F5DC silk, plus the approved back cover — Champagne Gold dog logo, Royal Purple title, tagline The Pinnacle of Biological Companionship. The four puppies are commercial artwork only, not Alfa and Omega. Photoreal live-action, no airbrush, no porcelain, no plastic.
 <span class="neg">Negative: (porcelain skin), (smooth skin), (airbrushed), (beauty filter), (plastic texture), (perfect skin), (CGI)</span></pre>
-</section>
+  </section>
 
-<section id="trio">
-<h2>06 · <b>CONTRASTE — EL TRÍO DE PODER</b></h2>
-<table>
-<tr><th>#</th><th>Personaje</th><th>Rasgo</th></tr>
-<tr><td class="mono">01</td><td>El Coleta</td><td>Porcelana</td></tr>
-<tr><td class="mono">02</td><td>El Rubio</td><td>Porcelana</td></tr>
-<tr><td class="mono">03</td><td>La Japonesa</td><td>Porcelana</td></tr>
-<tr><td class="mono">00</td><td><b>El Pelirrojo</b></td><td><b>HUMANO IMPERFECTO</b></td></tr>
-</table>
-<p>Tres cuerpos de porcelana contra un cuerpo de poro. El Insecto en la Caja de Cristal ya tiene sus tres carceleros de cristal. El Coleta corta (línea), el Rubio seduce (belleza), la Japonesa controla (protocolo), el Pelirrojo sangra (vida).</p>
-</section>
-
-<section id="prop">
-<h2>07 · <b>PROP HÉROE</b> — CATÁLOGO COMERCIAL BIO-PET (CANON)</h2>
-<table>
-<tr><th>Lado</th><th>Contenido</th></tr>
-<tr><td>Izquierda — spread comercial oficial</td><td>Página izquierda: logotipo, lema, ubicación y QR. Página derecha: imagen publicitaria de <b>CUATRO</b> cachorros sobre seda blanca Cream White <span class="mono">#F5F5DC</span></td></tr>
-<tr><td>Derecha — portada cerrada</td><td>Portada del catálogo (réplica exacta, §30/§31)</td></tr>
-<tr><td>Contraportada aprobada</td><td>Logo perro Champagne Gold + título Royal Purple + tagline "The Pinnacle of Biological Companionship"</td></tr>
-</table>
-<div class="callout"><span class="tag">⚠ Retcon §67 — Regla de continuidad</span><br>
-La imagen de <b>cuatro cachorros es publicidad de tienda</b> (marketing pre-retcon, documento histórico) y NO representa a la pareja adquirida. El canon de la escena de origen es <b>Alfa + Omega = DOS cachorros, siempre juntos, siempre tocándose</b>.
-</div>
-</section>
-
-<section id="origen">
-<h2>08 · <b>ESCENA DE ORIGEN</b> — DESPUÉS DE LA ADQUISICIÓN (SOFÁ, 21:9)</h2>
-<table>
-<tr><th>Elemento</th><th>Especificación</th></tr>
-<tr><td>Activo</td><td><span class="mono">PELIRROJO_08_ORIGEN</span> — 21:9</td></tr>
-<tr><td>Composición</td><td>Sofá, de espaldas, cobre; tele de noticias; mesa con mug, teléfono y catálogo; cesta con Alfa + Omega</td></tr>
-<tr><td>Entorno</td><td>Cortinas a su izquierda corridas + gran ciudad (Cuatro Torres). Sol dorado de las 08:17</td></tr>
-<tr><td>Tele</td><td><b>"ZONA DE INCIDENTE"</b> + alerta de última hora sobre una brecha de contención en una empresa biológica</td></tr>
-<tr><td>Ticker correcto</td><td>"ÚLTIMA HORA: Brecha de contención en empresa biológica. Dos heridos." · LIVE 08:17 AM</td></tr>
-<tr><td>Cesta</td><td>Bordado SOLO <span class="mono">"ALFA · OMEGA"</span> — prohibido "ancla emocional" (eso es biblia, no merchandising)</td></tr>
-</table>
-<div class="note"><span class="tag">Contenido</span><br>
-Los dos cachorros duermen <b>siempre juntos</b> en la cama rotulada "ALFA · OMEGA". El tío moreno de las capturas antiguas del sofá NO es el Pelirrojo (prototipo descartado). Siguiente corte pedido y en pausa: tele plasma de más pulgadas, sin planta en el salón, para leer el split de las noticias (08:37).
-</div>
-</section>
-
-<section id="activos">
-<h2>09 · <b>ESTADO DE ACTIVOS</b></h2>
-<table>
-<tr><th>Activo (nombre canónico)</th><th>Contenido</th><th>Estado Biblia</th><th>En este repo</th></tr>
-<tr><td class="mono">PELIRROJO_01_TURNAROUND.jpg</td><td>Turnaround cuerpo completo 0°/45°/90°/180° · fondo blanco estudio · bomber Cool Pearl Grey</td><td><span class="st st-ok mono">✅ APROBADO</span></td><td><span class="st st-pend mono">⏳ PENDIENTE EXPORTAR</span></td></tr>
-<tr><td class="mono">PELIRROJO_02_ROSTROS.jpg</td><td>Frente / tres cuartos / perfil · poros + acné 18–19</td><td><span class="st st-ok mono">✅ APROBADO</span></td><td><span class="st st-pend mono">⏳ PENDIENTE EXPORTAR</span></td></tr>
-<tr><td class="mono">PELIRROJO_04_ESCALERA.jpg</td><td>Look A · metro/escaleras · mirada a cámara · catálogo</td><td><span class="st st-ok mono">✅ APROBADO</span></td><td><span class="st st-pend mono">⏳ PENDIENTE EXPORTAR</span></td></tr>
-<tr><td class="mono">PELIRROJO_07_SPREAD.jpg</td><td>Prop héroe · catálogo abierto · spread comercial</td><td><span class="st st-ok mono">✅ APROBADO</span></td><td><span class="st st-pend mono">⏳ PENDIENTE EXPORTAR</span></td></tr>
-<tr><td class="mono">PELIRROJO_07_PORTADA.jpg</td><td>Prop héroe · portada cerrada · BIO-PET BOUTIQUE</td><td><span class="st st-ok mono">✅ APROBADO</span></td><td><span class="st st-pend mono">⏳ PENDIENTE EXPORTAR</span></td></tr>
-<tr><td class="mono">Skin-Node hero (close-up vagón)</td><td>Master de piel 9/10 · base #FCE5CD + rubor #EFBCA8 + acné #D88C7B · referencia para in-painting en otros planos</td><td><span class="st st-ok mono">✅ APROBADO</span></td><td><span class="st st-pend mono">⏳ PENDIENTE EXPORTAR</span></td></tr>
-<tr><td class="mono">PELIRROJO_08_ORIGEN</td><td>Escena origen · sofá 21:9 · cesta ALFA · OMEGA · ticker 08:17</td><td><span class="st st-wip mono">🟡 EN REVISIÓN</span></td><td>—</td></tr>
-</table>
-<p style="color:var(--slate);font-size:13px">Los activos existían en el workspace anterior (perdido por el límite de 128 MB, §62.3/§76). La Biblia es la fuente de reconstrucción: si se pierde uno, se regenera con sus prompts. Al re-exportar, archivar aquí con el nombre canónico exacto.</p>
-</section>
-
-<section id="notas">
-<h2>10 · <b>NOTAS DE DIRECCIÓN</b></h2>
-<ul>
-<li><b>La Mirada (§39) — ancla emocional:</b> no es una mirada perdida. Es un joven abrumado, sumergido en una ciudad que no es la suya, rodeado de depredadores corporativos. Intenta salvar a dos cachorros. Lo que el Joven ve: un paraíso corporativo. Lo que el espectador ve: una trampa. La mirada debe decir: <i>"Este es el lugar donde mi vida va a mejorar"</i>.</li>
-<li><b>Acné crítico (§40):</b> la IA tiende a "limpiar" caras; el negative es crítico. El acné aumenta empatía, refuerza el contraste con la arquitectura perfecta y sella el realismo.</li>
-<li><b>Compositing externo (§57.3):</b> la herramienta no fija la identidad facial entre generaciones. Para el plano de la escalera (Look A), la vía recomendada es pegar la imagen aprobada del rostro sobre el escenario (Photoshop/Krita/GIMP), no regenerar.</li>
-<li><b>Lecciones §41:</b> 1) Arriba/abajo en la IA → referencias absolutas al marco (BOTTOM EDGE of the frame, lower third). 2) Porosidad: no forzar 10/10 en planos medios; reservar hiperrealismo para close-ups. 3) La ficha de texturas como referencia global puede contaminar; preferir Skins Nodes textualmente.</li>
-</ul>
-</section>
-
-<section id="continuidad">
-<h2>11 · <b>CONTINUIDAD</b> — FUECROS DE CANÓN</h2>
-<table>
-<tr><th>Referencia</th><th>Contenido</th></tr>
-<tr><td class="mono">Biblia §39 / §58</td><td>Blueprint de identidad y ficha completa (fuente de esta hoja)</td></tr>
-<tr><td class="mono">Biblia §59–61</td><td>Trío de Poder — El Coleta · El Rubio · La Japonesa</td></tr>
-<tr><td class="mono">Biblia §67</td><td>Retcon del catálogo: Alfa + Omega = DOS cachorros (canon vivo)</td></tr>
-<tr><td class="mono">Biblia §68</td><td>Escena origen (sofá 21:9)</td></tr>
-<tr><td class="mono">Biblia §69</td><td>El Vigilante = EL Pelirrojo 15–20 años después (CONFIRMADO). No recastar la cara joven; la versión mayor suma barba, lona, mochila táctica y el chihuahua adulto</td></tr>
-<tr><td class="mono">Biblia §70</td><td>Decisiones de dirección y rechazos · "Él es poro. Trío es porcelana."</td></tr>
-<tr><td class="mono">Biblia §77.7–77.8</td><td>Propuesta activa: viaje a BIO-PET en tranvía/tren ligero exterior + cruce visual con la línea del Mercenario (NO canon cerrado)</td></tr>
-</table>
-</section>
-
-<footer>
-FUENTE: BIBLIA MAESTRA v5.0 (30 AGO 2026) · SECCIONES 26, 39, 40, 41, 57, 58, 67, 68, 69, 70, 77.7–77.8 ·
-EL CANON VIVE EN LA BIBLIA — ESTA FICHA ES SU PROYECCIÓN HTML (SOLO TEXTO, §76) · <a href="../index.html">← VOLVER AL ÍNDICE</a>
-</footer>
-
+  <footer>
+    EL PELIRROJO · HUMANO IMPERFECTO · HOJA TÉCNICA 00 · 5 ACTIVOS VISUALES LOCALES / 0 PENDIENTES DE IMAGEN<br>
+    PROP HÉROE · DIMENSIONES BLOQUEADAS<br>
+    CATÁLOGO BIO-PET: CERRADO 210 × 280 × 6 MM; ABIERTO PLANO 420 × 280 MM; APERTURA NATURAL EN MANOS 130–140°; ANCHURA PROYECTADA VISIBLE 350–390 MM. PROPORCIÓN DE CADA PÁGINA 3:4. ESTAS MEDIDAS DEBEN FIGURAR EN TODO PROMPT FUTURO QUE INCLUYA EL CATÁLOGO.
+    <br><br>
+    <a href="../index.html">← Archivo de Arte</a> · <a href="../../BIBLIA_MAESTRA_v5.0.md">Biblia Maestra v5.0</a>
+  </footer>
 </div>
 </body>
 </html>
