@@ -1979,7 +1979,7 @@ Use the attached Carlos Ramírez master as a strict identity lock. Do not recast
 
 ## 75.7 REGLA DE MICRO-GESTO FACIAL (CANON — NUEVO)
 > **Contexto:** la placa salió "demasiado plana" (cara de maniquí). Se fija esta regla para que Valeria tenga VIDA sin romper los bloqueos.
-- **La piel se mantiene PORCELANA** (regla §66: el poro es el del sofá/Pelirrojo, nunca el de plató). No se añade acné ni imperfecciones.
+- **La piel se mantiene PORCELANA** (regla §66: el poro es el del sofá/Pelirrojo, nunca el del plató). No se añade acné ni imperfecciones.
 - **La EXPRESIÓN sí puede tener micro-gesto natural** de presentadora real narrando un incidente grave:
   - Ceño **ligeramente fruncido** (concentración / preocupación contenida).
   - Mirada que sigue al holograma (a un punto concreto, no clavada a cámara ni perdida).
