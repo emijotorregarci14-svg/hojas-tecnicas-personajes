@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Wrapper de ejecucion de Blender (bpy) en modo headless.
+#
+#   ./bl script.py                 -> usa el venv por defecto (.venv-blender, bpy 5.0.1)
+#   BL_VENV=/ruta/.venv-blender43 ./bl script.py   -> usa otro venv (bpy 4.3.0)
+#   ./bl -c "print(bpy.app.version_string)"
+#
+# Motivo del LD_PRELOAD: el paquete bpy de PyPI enlaza contra libGL, libX11,
+# libXrender, libxkbcommon, libICE, libSM, libXfixes, libXi (y libXxf86vm en
+# 4.3) que no existen en el sandbox. make_stubs.py genera stubs no-op con el
+# SONAME exacto: Blender en modo background nunca llama a esas funciones,
+# pero el enlazador exige que los simbolos existan en tiempo de carga.
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"   # .../tools/blender_env
+REPO="$(cd "$ROOT/../.." && pwd)"                        # raiz del repo
+VENV="${BL_VENV:-$REPO/.venv-blender}"
+XLIB="${BL_XLIB:-$ROOT/xlibs}"
+
+export LD_LIBRARY_PATH="$XLIB:$VENV/lib:${LD_LIBRARY_PATH:-}"
+export LD_PRELOAD="$XLIB/libxstub.so${LD_PRELOAD:+:$LD_PRELOAD}"
+
+exec "$VENV/bin/python" "$@"

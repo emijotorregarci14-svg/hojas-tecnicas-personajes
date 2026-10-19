@@ -1,0 +1,16 @@
+# Entornos y artefactos generados (no versionar)
+.venv*
+tools/blender_env/xlibs/
+tools/blender_env/xlibs_*/
+tools/blender_env/_stub_build/
+__pycache__/
+*.pyc
+
+# Renders e intermedios pesados
+WIP_*
+*.blend
+*.blend1
+
+# Salidas de render de trabajo (las aprobadas si se versionan)
+out/
+renders/
