@@ -170,6 +170,28 @@ def medir(ruta, escala_h=None, escala_v=None, fondo=FONDO):
     if escala_v is None:
         escala_v = (suelo - techo_carroceria) / SPEC_ALTO
 
+    metros = dict(
+        largo=(x_max - x_min + 1) / escala_h,
+        alto_carroceria=(suelo - techo_carroceria) / escala_v,
+        alto_con_cartel=(suelo - techo_px) / escala_v,
+        cintura=((suelo - cintura) / escala_v) if cintura is not None else None,
+        cartel_sobre_techo=(techo_carroceria - techo_px) / escala_v,
+        cartel_largo=((cartel_x[1] - cartel_x[0] + 1) / escala_h)
+        if cartel_x else None,
+    )
+
+    # RATIOS ADIMENSIONALES: no dependen de la escala. Son la comprobación
+    # honesta cuando no se quiere suponer ninguna: la ficha y el modelo se
+    # comparan en "veces el alto de la carrocería", sin metros de por medio.
+    alto = metros["alto_carroceria"]
+    ratios = dict(
+        largo_sobre_alto=metros["largo"] / alto,
+        alto_con_cartel_sobre_alto=metros["alto_con_cartel"] / alto,
+        cartel_sobre_techo_sobre_alto=metros["cartel_sobre_techo"] / alto,
+        cintura_sobre_alto=metros["cintura"] / alto if cintura is not None else None,
+        cartel_largo_sobre_alto=metros["cartel_largo"] / alto if cartel_x else None,
+    )
+
     return dict(
         ruta=ruta, ancho_px=W, alto_px=H,
         suelo_px=suelo, techo_px=techo_px,
@@ -177,15 +199,7 @@ def medir(ruta, escala_h=None, escala_v=None, fondo=FONDO):
         cintura_px=cintura, x_min_px=x_min, x_max_px=x_max,
         cartel_x_px=cartel_x, cartel_alto_px=cartel_alto_px,
         px_por_m_h=escala_h, px_por_m_v=escala_v, escala_deducida=deducida,
-        metros=dict(
-            largo=(x_max - x_min + 1) / escala_h,
-            alto_carroceria=(suelo - techo_carroceria) / escala_v,
-            alto_con_cartel=(suelo - techo_px) / escala_v,
-            cintura=((suelo - cintura) / escala_v) if cintura is not None else None,
-            cartel_sobre_techo=(techo_carroceria - techo_px) / escala_v,
-            cartel_largo=((cartel_x[1] - cartel_x[0] + 1) / escala_h)
-            if cartel_x else None,
-        ),
+        metros=metros, ratios=ratios,
     )
 
 
@@ -221,6 +235,13 @@ def imprime(h, titulo):
     print(f"    línea de cintura       {_fmt(m['cintura'])}")
     print(f"    cartel sobre el techo  {_fmt(m['cartel_sobre_techo'])}")
     print(f"    cartel (largo planta)  {_fmt(m['cartel_largo'])}")
+    r = h.get('ratios') or {}
+    print("  --- ratios sin escala (x alto de carrocería) ---")
+    print(f"    largo                  {_fmt(r.get('largo_sobre_alto'), 4)}")
+    print(f"    alto con cartel        {_fmt(r.get('alto_con_cartel_sobre_alto'), 4)}")
+    print(f"    cartel sobre el techo  {_fmt(r.get('cartel_sobre_techo_sobre_alto'), 4)}")
+    print(f"    cintura                {_fmt(r.get('cintura_sobre_alto'), 4)}")
+    print(f"    cartel (largo planta)  {_fmt(r.get('cartel_largo_sobre_alto'), 4)}")
 
 
 TABLA = [
@@ -276,6 +297,51 @@ def dibujar(h, salida):
 
 
 # ------------------------------------------------------------------- CLI ----
+RATIOS = [
+    ("largo / alto", "largo_sobre_alto"),
+    ("alto con cartel / alto", "alto_con_cartel_sobre_alto"),
+    ("cartel sobre techo / alto", "cartel_sobre_techo_sobre_alto"),
+    ("cintura / alto", "cintura_sobre_alto"),
+    ("cartel planta / alto", "cartel_largo_sobre_alto"),
+]
+
+
+def tabla_ratios(a, b, tolerancia=0.01):
+    """Comparación adimensional: no depende de la escala de ninguna imagen."""
+    lineas = []
+    for etiqueta, clave in RATIOS:
+        va = (a.get("ratios") or {}).get(clave)
+        vb = (b.get("ratios") or {}).get(clave)
+        if va is None or vb is None:
+            continue
+        d = vb - va
+        marca = "OK " if abs(d) <= tolerancia else ("~  " if abs(d) <= 0.03 else "!! ")
+        lineas.append(f"  {etiqueta:26s}   ficha: {va:7.4f}   "
+                      f"modelo: {vb:7.4f}   delta: {d:+7.4f}  {marca}")
+    return "\n".join(lineas)
+
+
+def informe(h, titulo):
+    """Informe compacto, para pegar en un chat."""
+    m, r = h["metros"], h.get("ratios") or {}
+    return "\n".join([
+        f"[{titulo}] {h['ruta']}",
+        f"  px: suelo {h['suelo_px']}  techo {h['techo_carroceria_px']}  "
+        f"cartel {h['techo_px']}  cintura {h['cintura_px']}  "
+        f"x {h['x_min_px']}..{h['x_max_px']}",
+        f"  escala {h['px_por_m_h']:.2f}/{h['px_por_m_v']:.2f} px/m "
+        f"({'deducida' if h['escala_deducida'] else 'medida'})",
+        f"  m  largo {m['largo']:.3f}  alto {m['alto_carroceria']:.3f}  "
+        f"con cartel {m['alto_con_cartel']:.3f}  cintura {m['cintura']:.3f}  "
+        f"cartel+techo {m['cartel_sobre_techo']:.3f}  "
+        f"cartel planta {m['cartel_largo']:.3f}",
+        f"  x  largo/alto {r.get('largo_sobre_alto', 0):.4f}  "
+        f"con cartel/alto {r.get('alto_con_cartel_sobre_alto', 0):.4f}  "
+        f"cartel+techo/alto {r.get('cartel_sobre_techo_sobre_alto', 0):.4f}  "
+        f"cintura/alto {r.get('cintura_sobre_alto', 0):.4f}",
+    ])
+
+
 def main(argv):
     if len(argv) < 2:
         print(__doc__)
@@ -312,6 +378,18 @@ def main(argv):
         imprime(hm, "MODELO (render)")
         print("\n=== DESVIACIONES (modelo - ficha) ===")
         print(tabla_comparativa(hf, hm))
+        print("\n=== DESVIACIONES SIN ESCALA (x alto de carrocería) ===")
+        print(tabla_ratios(hf, hm))
+        print("\n=== INFORMES COMPACTOS ===")
+        print(informe(hf, "FICHA"))
+        print(informe(hm, "MODELO"))
+        return 0
+
+    if modo == "INFORME":
+        if not args:
+            raise SystemExit("Falta la imagen")
+        h = medir(args[0], escala, escala)
+        print(informe(h, modo))
         return 0
 
     print(__doc__)
