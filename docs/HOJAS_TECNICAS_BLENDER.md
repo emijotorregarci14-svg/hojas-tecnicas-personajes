@@ -7,6 +7,36 @@
 
 ---
 
+## 0. Coordinación con el otro agente (alcance y reglas)
+
+> **Reglas canónicas:** `tools/blender/COORDINACION_AGENTES.md` (las publica el agente de
+> vehículos). **Si algo de este documento contradice a ese, manda ese.** Este apartado
+> resume lo que me aplica; no sustituye al documento canónico.
+
+**Mi alcance:** hojas de referencia de personajes, turnarounds, rostros y el pipeline
+de render del repo. **No toco `tools/blender/`** (maestros de vehículos, `novu_lib.py`,
+renders `SHUTTLE_FINAL_*` / `TAXI_*` / `PRACTICA_*`).
+
+**Ficheros protegidos que además respeto** (definidos en el documento canónico):
+`COCHE_MODULAR_v54_SHUTTLE_FINAL.py`, `SPECS_SHUTTLE_v54.md`, `SHUTTLE_FINAL_3q.webp`,
+`SHUTTLE_FINAL_rear_3q.webp`, `SHUTTLE_FINAL_front.webp`, `COCHE_MODULAR_v38_TAXI_MASTER.py`,
+`TEMA_APERTURA_V2.wav`, `BANDA_CAP3_70s.wav`.
+
+**Versión de Blender:** la referencia obligatoria es **4.3.2** (`/usr/bin/blender`).
+En este sandbox **no hay red hacia apt**, así que no puedo instalar 4.3.2: trabajo con
+**bpy 4.3.0 de PyPI** (misma rama 4.3) y **valido la paridad de medición** contra los
+valores publicados por el agente de vehículos (ancho 1,2974 m · holgura −0,188 m) usando
+`medir_v54.py`. Protocolo y arnés: `tools/blender_env/README.md` → *Paridad de medición*.
+**Blender 5.0.1 queda como entorno de pruebas, no como referencia ni para másteres.**
+
+**Stubs de librerías:** solo en mi entorno aislado de pruebas (`tools/blender_env/`).
+En el entorno de vehículos no se usan: si faltan librerías, se instala Blender con apt.
+
+**Antes de publicar cualquier resultado:** medir sin render, anotar los valores y
+diferenciar en el informe lo aplicado, lo medido y lo pendiente.
+
+---
+
 ## 1. Qué estamos construyendo
 
 La Biblia Maestra (§16B) define que la IA genera personajes inconsistentes entre escenas

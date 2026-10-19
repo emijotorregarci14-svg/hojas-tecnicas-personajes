@@ -5,6 +5,11 @@
 **Estado:** Documento maestro único, reorganizado para continuidad, producción y expansión narrativa.
 **Uso:** Reinyectar al inicio de cualquier sesión nueva o usar como archivo central de producción.
 
+> **Coordinación entre agentes:** las reglas de trabajo compartidas viven en
+> `tools/blender/COORDINACION_AGENTES.md` (canónico, publicado por el agente de vehículos).
+> Para el pipeline de hojas de personajes en Blender: `docs/HOJAS_TECNICAS_BLENDER.md`.
+> Entorno headless verificado: `tools/blender_env/README.md`.
+
 ---
 
 ## 1. PROPÓSITO DEL DOCUMENTO
