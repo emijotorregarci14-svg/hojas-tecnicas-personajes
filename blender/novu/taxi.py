@@ -153,9 +153,13 @@ def carroceria(mats):
     # Pasos de rueda: se recortan del flanco con cilindros booleanos
     for sy in (1, -1):
         for sx in (1, -1):
+            y_rueda = (P.CARRIL_RUEDA_Y_FRENTE if sy > 0
+                       else P.CARRIL_RUEDA_Y_TRAS)
+            # El paso abraza el neumático: en la ficha el arco queda a
+            # centimetros del flanco, no con un hueco de 4,5 cm.
             cortador = geo.cilindro(
-                f"_corte_{sx}_{sy}", P.RADIO_RUEDA + 0.045, 0.52,
-                (sx * 0.545, sy * P.CARRIL_RUEDA_Y, P.RADIO_RUEDA),
+                f"_corte_{sx}_{sy}", P.RADIO_RUEDA + 0.022, 0.52,
+                (sx * 0.545, y_rueda, P.RADIO_RUEDA),
                 material=mats["M_MOLD"], vertices=40, eje='X')
             geo.booleano(cuerpo, cortador)
             cortador.hide_render = True
@@ -237,7 +241,8 @@ def ruedas(mats):
     for sy in (1, -1):
         for sx in (1, -1):
             x = sx * P.CENTRO_RUEDA_X
-            y = sy * P.CARRIL_RUEDA_Y
+            y = (P.CARRIL_RUEDA_Y_FRENTE if sy > 0
+                 else P.CARRIL_RUEDA_Y_TRAS)
             etiqueta = f"{sx}_{sy}"
 
             pneumatico = geo.revolucion(
@@ -319,37 +324,63 @@ def luces(mats):
 # Letrero de techo, LiDAR, rótulos
 # ---------------------------------------------------------------------------
 def letrero_techo(mats):
+    """Caja de techo con la palabra TAXI, como en la hoja de catálogo.
+
+    La caja se apoya en el techo y lleva el texto negro en las dos caras
+    laterales (se lee en la vista lateral) y en las dos frontales (se lee en
+    la vista trasera).
+    """
     s = P.SIGN
     piezas = []
-    z_base = s["z"] + s.get("z_base", 0.015)
+    z_base = s["z"]
 
     base = geo.caja_redondeada(
-        f"{NOMBRE}_letrero_base", (0.0, s["y"], z_base + 0.0075),
-        (s["ancho"] * 0.88, s["fondo"], 0.015), 0.005, mats["M_MOLD"], 3)
+        f"{NOMBRE}_letrero_base", (0.0, s["y"], z_base + s["z_base"] * 0.5),
+        (s["ancho"] * 0.86, s["fondo"] * 0.86, s["z_base"]), 0.005,
+        mats["M_MOLD"], 3)
     piezas.append(base)
 
-    z_caja = z_base + 0.015
+    z_caja = z_base + s["z_base"]
     caja = geo.caja_redondeada(
         f"{NOMBRE}_letrero_caja", (0.0, s["y"], z_caja + s["alto"] * 0.5),
-        (s["ancho"], s["fondo"] * 1.2, s["alto"]), 0.016, mats["M_SIGN"], 4)
+        (s["ancho"], s["fondo"], s["alto"]), 0.016, mats["M_SIGN"], 4)
     piezas.append(caja)
 
-    texto = geo.texto_3d(
-        f"{NOMBRE}_letrero_texto", s["texto"], s["alto"] * 0.68,
-        (0.0, s["y"] + s["fondo"] * 0.62, z_caja + s["alto"] * 0.5),
-        (pi / 2, 0, pi), mats["M_TEXT"], extrude=0.002)
-    piezas.append(texto)
+    # Texto: se estira en el sentido de la lectura hasta el ancho de la hoja
+    tam = s["alto_texto"] / 0.72        # alto_texto es el alto de las mayusculas
+    for sx in (1, -1):
+        texto = geo.texto_3d(
+            f"{NOMBRE}_letrero_texto_{sx}", s["texto"], tam,
+            (sx * (s["ancho"] * 0.5 + 0.003), s["y"], z_caja + s["alto"] * 0.5),
+            (pi / 2, 0, sx * pi / 2), mats["M_TEXT"], extrude=0.002)
+        xs = [v.co.x for v in texto.data.vertices]
+        ancho = max(xs) - min(xs)
+        if ancho > 1e-6:
+            texto.scale.x = s["ancho_texto"] / ancho
+        piezas.append(texto)
+
+    for sy in (1, -1):
+        texto = geo.texto_3d(
+            f"{NOMBRE}_letrero_texto_y{sy}", s["texto"], tam,
+            (0.0, s["y"] + sy * (s["fondo"] * 0.5 + 0.003), z_caja + s["alto"] * 0.5),
+            (pi / 2, 0, pi if sy > 0 else 0), mats["M_TEXT"], extrude=0.002)
+        xs = [v.co.x for v in texto.data.vertices]
+        ancho = max(xs) - min(xs)
+        if ancho > 1e-6:
+            texto.scale.x = s["ancho_texto"] / ancho
+        piezas.append(texto)
     return piezas
 
 
 def lidar(mats):
+    """Pod de sensor del techo trasero (pieza negra y baja, como en la ficha)."""
     l = P.LIDAR
     base = geo.caja_redondeada(
         f"{NOMBRE}_lidar_base", (0.0, l["y"], l["z"] + 0.008),
-        (l["lado"] * 1.15, l["lado"] * 1.15, 0.016), 0.006, mats["M_MOLD"], 3)
+        (l["lado"] * 1.1, l["largo"] * 1.05, 0.016), 0.006, mats["M_MOLD"], 3)
     ventana = geo.caja_redondeada(
         f"{NOMBRE}_lidar", (0.0, l["y"], l["z"] + 0.016 + l["alto"] * 0.5),
-        (l["lado"], l["lado"], l["alto"]), 0.006, mats["M_LED_CIAN"], 3)
+        (l["lado"], l["largo"] * 0.92, l["alto"]), 0.010, mats["M_MOLD"], 3)
     return [base, ventana]
 
 
@@ -391,7 +422,11 @@ def banda_cuadros(mats, cuerpo):
 
 
 def rotulo_lateral(mats, cuerpo):
-    """«NOVU TAXI FREE.» proyectado sobre el flanco."""
+    """«NOVU TAXI FREE.» proyectado sobre el flanco.
+
+    El texto se estira en el sentido de la lectura hasta el ancho medido en la
+    ficha (0,95 m), porque la rotulación del catálogo es ancha y baja.
+    """
     r = P.ROTULO
     piezas = []
     for sx in (1, -1):
@@ -399,6 +434,10 @@ def rotulo_lateral(mats, cuerpo):
             f"{NOMBRE}_rotulo_{sx}", r["texto"], r["alto"],
             (sx * 0.72, r["y"], r["z"]), (pi / 2, 0, sx * pi / 2),
             mats["M_LIVERY"], extrude=0.004)
+        xs = [v.co.x for v in texto.data.vertices]
+        ancho = max(xs) - min(xs)
+        if ancho > 1e-6 and r.get("ancho"):
+            texto.scale.x = r["ancho"] / ancho
         geo.shrinkwrap(texto, cuerpo, eje='X', offset=0.006)
         piezas.append(texto)
     return piezas

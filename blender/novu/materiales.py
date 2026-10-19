@@ -64,14 +64,19 @@ def libreria():
     m = {}
     m["M_BODY"] = base("M_BODY", P.COLOR_CARROCERIA, metallic=0.35, roughness=0.30)
     m["M_MOLD"] = base("M_MOLD", P.COLOR_NEGRO, metallic=0.0, roughness=0.55)
-    m["M_ROOF"] = base("M_ROOF", P.COLOR_NEGRO_BRILLO, metallic=0.05, roughness=0.11,
-                        spec=0.32)
+    # El techo del catálogo es negro profundo con un brillo suave: con la
+    # rugosidad de espejo (0,11) reflejaba el fondo blanco y la cabina
+    # leía gris claro en vez de negra.
+    m["M_ROOF"] = base("M_ROOF", P.COLOR_NEGRO_BRILLO, metallic=0.0, roughness=0.45,
+                        spec=0.12)
     # Cristal opaco y muy reflectante: se comporta como un espejo oscuro y
     # lee gris claro sobre fondo blanco, como en la hoja tecnica.
     m["M_GLASS"] = base("M_GLASS", P.COLOR_CRISTAL, metallic=0.0, roughness=0.05,
                         alpha=1.0, ior=1.45, spec=0.75)
+    # Con una emision de 6.0 el AgX la desaturaba y el LED salia blanco:
+    # en la hoja de catalogo las tiras se leen cian.
     m["M_LED_CIAN"] = base("M_LED_CIAN", P.COLOR_CIAN, roughness=0.25,
-                            emission=P.COLOR_LED, emission_strength=6.0)
+                            emission=P.COLOR_LED, emission_strength=3.0)
     m["M_LED_ROJO"] = base("M_LED_ROJO", P.COLOR_ROJO, roughness=0.25,
                             emission=P.COLOR_ROJO_EM, emission_strength=9.0)
     m["M_TIRE"] = base("M_TIRE", P.COLOR_RUEDA, metallic=0.0, roughness=0.82)

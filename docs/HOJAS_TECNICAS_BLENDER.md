@@ -297,6 +297,10 @@ blender/novu/materiales.py libreria M_* (nomenclatura comun con el otro pipeline
 blender/novu/taxi.py       ensamblado: carrocería, ruedas, luces, letrero, rotulos
 blender/novu/estudio.py    9 vistas, fondos, luces, Cycles CPU + AgX
 blender/novu/render.py     CLI: --vista / --todas / --salida / --solo-medidas
+blender/novu/medir.py      criterio UNICO de medición de hitos sobre una imagen
+blender/novu/verificar_ficha.py  render lateral ortográfico + tabla de desviaciones
+blender/novu/referencia/vista_lateral_ficha.png  recorte de la vista lateral de la
+                           hoja de catálogo (la fuente de verdad medida)
 ```
 
 ### 12.2 Cotas medidas (NOVU TAXI FREE)
@@ -322,7 +326,49 @@ agente es **ancho 1,2974 m** y **holgura −0,188 m** (Blender 4.3.2). El arnés
 solo puede ejecutarse cuando exista `medir_v54.py` en el entorno del otro
 agente: ese fichero no esta en ninguna rama de este repositorio.
 
-### 12.4 Aplicado / medido / pendiente
+### 12.4 Verificación objetiva contra la ficha
+
+`blender/novu/verificar_ficha.py` renderiza la vista lateral **ortográfica** del
+modelo (escala en píxeles exactamente conocida: 3,30 m de ancho de encuadre) y
+compara sus hitos con los de `blender/novu/referencia/vista_lateral_ficha.png`,
+que es el recorte del panel **VISTAS TÉCNICAS** de la hoja de catálogo.
+
+```
+./tools/blender_env/bl blender/novu/verificar_ficha.py --muestras 12
+```
+
+**Criterio de medición** (`blender/novu/medir.py`, el mismo en las dos imágenes):
+
+| Hito | Definición |
+|---|---|
+| suelo | última fila de la silueta (línea de apoyo) |
+| techo | primera fila de la silueta, ya sin el cartel, con ancho ≥ 25 % del máximo |
+| cartel | mancha amarilla de la fila más alta (la caja TAXI) |
+| cintura | primera fila desde el techo con ≥ 30 % de amarillo y mancha grande |
+| largo | extensión horizontal de la silueta |
+
+Las escalas de la ficha se anclan en sus propias cotas declaradas (2,60 m de
+largo, 1,20 m de carrocería): la vista lateral de la hoja da **66,2 px/m** en
+horizontal y **65,3 px/m** en vertical, es decir, es isotrópica y sirve como
+plano de referencia.
+
+**Resultado actual** (modelo − ficha):
+
+| Hito | Ficha | Modelo | Δ | |
+|---|---|---|---|---|
+| Largo total | 2,600 m | 2,612 m | +0,012 | OK |
+| Alto de carrocería | 1,200 m | 1,199 m | −0,001 | OK |
+| Alto con cartel TAXI | 1,332 m | 1,336 m | +0,005 | OK |
+| Línea de cintura | 0,623 m | 0,630 m | +0,007 | OK |
+| Cartel sobre el techo | 0,132 m | 0,137 m | +0,006 | OK |
+| Cartel (largo en planta) | 0,358 m | 0,382 m | +0,024 | ~ |
+
+**Cota del cartel TAXI (decisión):** la ficha dibuja el cartel hasta **1,332 m**
+(16,6 cm por encima de la carrocería de 1,20 m). Es lo que dice el dibujo y lo
+que se ha implementado; la convención de 1,277 m de los másters anteriores
+no se aplica aquí.
+
+### 12.5 Aplicado / medido / pendiente
 
 **Aplicado**
 - Carrocería por loft de 20 estaciones con pliegue vivo de cintura.
@@ -334,13 +380,30 @@ agente: ese fichero no esta en ninguna rama de este repositorio.
   retrovisores y paragolpes.
 - Validación de monotonía del perfil: evita el fallo silencioso por el que el
   booleano de los pasos de rueda devolvía la carrocería vacía.
+- **Cartel TAXI corregido**: en la ficha es una caja de 0,42 × 0,39 m en planta
+  con la palabra en la **cara lateral** (se lee en la vista lateral) y en la
+  trasera; el modelo la tenía girada 90° y flotando sobre el techo.
+- **Pod de sensor**: la ficha no tiene cubo cian en el morro del techo, sino
+  una pieza negra y baja en el techo trasero; el modelo se ha corregido.
+- **Línea de cintura**: el amarillo llegaba a 0,773 m; en la ficha arranca en
+  0,623 m. Corregido bajando el pliegue de la sección (Z_CINTURA 0,660 →
+  0,485) y subiendo el cristal (factor de la banda de vidrio 0,85 → 0,92).
+- **Rótulo lateral** recolocado y estirado a la medida de la ficha (0,88 m,
+  mayúsculas de 0,076 m) y **ejes de rueda** a +0,885 / −0,915 m.
+- **Materiales**: techo negro mate (leía gris claro por el reflejo del fondo
+  blanco) y LED cian con menos emisión (AgX los saturaba a blanco).
 
 **Medido**
-- 2,6000 x 1,2999 x 1,1997 m (ver tabla 12.2), renderizado en 9 vistas.
+- 2,6000 x 1,2999 x 1,1997 m (ver tabla 12.2), renderizado en 10 vistas.
+- Desviaciones frente a la ficha: todas ≤ 0,024 m (tabla 12.4).
 
 **Pendiente**
-- Portón trasero más plano: el actual cae en rampa y deforma el texto proyectado.
-- Pasos de rueda marcados en negro.
+- Cola más cuadrada: en la ficha el techo se mantiene hasta Y −0,95 m y luego
+  cae de golpe; el modelo lo redondea ya desde Y −0,86 m (~12 cm de diferencia).
+- Cristal muy reflectante: en la ficha las ventanillas leen gris claro y el
+  habitáculo negro; en el modelo el cristal domina la lectura del lateral.
+- Portón trasero: la ficha lleva la banda negra con «NOVU» y «NOVU TAXI FREE.»
+  sobre portón amarillo; el modelo deja la cola demasiado negra.
 - Replicar la hoja de catálogo completa (héroe + 11 variantes + tabla de specs).
 - Paridad `medir_v54.py` con el otro agente.
 - Replicar la tabla de specs de la hoja de catálogo al formato del panel técnico.

@@ -33,14 +33,20 @@ RADIO_RUEDA = 0.275
 ANCHURA_RUEDA = 0.205
 RADIO_LLANTA = 0.196        # radio de la llanta
 CENTRO_RUEDA_X = 0.525         # semidistancia entre ejes de rueda
-CARRIL_RUEDA_Y = 0.90          # semidistancia entre ejes (batalla 1,80)
+# Ejes: en la vista lateral de la ficha el centro de la rueda delantera cae
+# en Y +0,885 y el de la trasera en Y −1,004, con las ruedas pegadas a los
+# extremos. La batalla oficial es 1,80 m, así que se reparten de forma
+# asimétrica: +0,885 y −0,915.
+CARRIL_RUEDA_Y = 0.90          # semidistancia nominal (batalla 1,80)
+CARRIL_RUEDA_Y_FRENTE = 0.885
+CARRIL_RUEDA_Y_TRAS = -0.915
 
 # ---------------------------------------------------------------------------
 # Paleta (catálogo NOVU). Valores lineales para Cycles.
 # ---------------------------------------------------------------------------
 COLOR_CARROCERIA = (0.95, 0.72, 0.05)      # amarillo taxi
 COLOR_NEGRO = (0.020, 0.020, 0.024)        # piezas negras / molduras
-COLOR_NEGRO_BRILLO = (0.030, 0.030, 0.036) # techo y piezas brillantes
+COLOR_NEGRO_BRILLO = (0.011, 0.011, 0.014) # techo y piezas brillantes
 COLOR_CRISTAL = (0.055, 0.060, 0.070)      # cristal gris oscuro
 COLOR_CIAN = (0.10, 0.85, 0.95)            # LED cian
 COLOR_ROJO = (0.85, 0.05, 0.04)            # pilotos traseros
@@ -107,7 +113,11 @@ ESTACIONES = [
 ]
 
 # Alturas clave del perfil transversal
-Z_CINTURA = 0.660       # línea de cintura: base de las ventanillas
+# La línea de cintura (donde el amarillo se encuentra con el habitáculo
+# negro) está en 0,623 m según la vista lateral de la ficha; el pliegue
+# estructural de la sección va por debajo, en 0,52 m.
+Z_CINTURA = 0.485       # pliegue vivo de la sección (máximo de anchura)
+Z_CINTURA_VISIBLE = 0.623   # línea de cintura pintada (borde amarillo/negro)
 Z_ROCKER = 0.300        # remate del zócalo negro
 MARCO_SUPERIOR = 0.105  # franja negra sobre el vidrio
 # Cortes longitudinales de la banda de ventanillas (medidos en la vista lateral)
@@ -121,17 +131,20 @@ Y_CUARTO = (-0.86, -0.62)  # ventanilla pequeña del cuarto trasero
 # ---------------------------------------------------------------------------
 # Elementos
 # ---------------------------------------------------------------------------
-# Letrero de techo.
-# Altura total del conjunto: 1,277 m (carrocería 1,20 m + cartel 7,7 cm), la misma
-# convención que el máster del taxi v38: la cota "1,20 m" de la ficha es la altura
-# de carrocería, no la altura con accesorios. La ilustración de la hoja dibuja el
-# cartel algo más alto (~11% del total), pero manda la convención del máster.
-# Letrero TAXI de techo: en la ficha sobresale ~0,13 m sobre la carrocería
-SIGN = dict(y=-0.040, z=1.200, ancho=0.420, alto=0.100, fondo=0.075,
-            texto="TAXI", color=COLOR_CARROCERIA, z_base=0.022)
+# Letrero de techo "TAXI".
+# Medido sobre la vista lateral de la hoja de catálogo (escala 66,0 px/m):
+#   caja vista de lado  0,39 m de largo (x 460..482 px de la hoja)
+#   caja vista de frente 0,43 m de ancho (hoja, vista trasera)
+#   altura de la caja   0,12 m  -> corona en 1,337 m (16,6 cm sobre el techo)
+#   palabra TAXI en negro, en la cara LATERAL y en la trasera
+# La caja se apoya en el techo (1,20 m): no flota.
+SIGN = dict(y=-0.013, z=1.200, ancho=0.420, fondo=0.390, alto=0.122,
+            z_base=0.015, texto="TAXI",
+            ancho_texto=0.330, alto_texto=0.067)
 
-# Módulo LiDAR (cuadrado cian del techo)
-LIDAR = dict(y=+0.170, z=1.202, lado=0.075, alto=0.020)
+# Pod de sensor del techo trasero. En la ficha es una pieza negra y baja
+# (0,17 m de largo) en el borde de la luna trasera, no un cubo cian.
+LIDAR = dict(y=-0.855, z=1.150, lado=0.060, largo=0.170, alto=0.042)
 
 # Tiras LED cian: frontal en las esquinas + continuidad por el costado
 LED = dict(z=0.505, x=0.600, y0=+1.120, y1=+1.262, grosor=0.024, alto=0.024,
@@ -152,11 +165,15 @@ PORTON = dict(y=-1.262, z=0.505, ancho=0.380, alto=0.085,
               piloto_x=0.225, piloto_ancho=0.130, piloto_alto=0.038,
               piloto_grosor=0.026, piloto_offset=0.058)
 
-# Banda de damero (cenefa de cuadros bajo la ventanilla)
-DAMERO = dict(z0=0.545, z1=0.630, y0=+0.800, y1=-0.620, x=0.655, lado=0.0425)
+# Banda de damero (cenefa de cuadros bajo la ventanilla, justo bajo la
+# línea de cintura de 0,623 m)
+DAMERO = dict(z0=0.505, z1=0.585, y0=+0.800, y1=-0.620, x=0.655, lado=0.0425)
 
 # Rótulo lateral "NOVU TAXI FREE."
-ROTULO = dict(y=+0.050, z=0.400, alto=0.115, texto="NOVU TAXI FREE.")
+# Medido en la vista lateral de la ficha: ocupa de Y +0,24 a Y −0,71
+# (0,95 m de largo) con las mayúsculas entre Z 0,33 y Z 0,41.
+ROTULO = dict(y=-0.190, z=0.367, alto=0.105, ancho=0.880,
+              texto="NOVU TAXI FREE.")
 
 # Retrovisores
 RETROVISOR = dict(x=0.640, y=+0.760, z=0.720, ancho=0.075, alto=0.055, fondo=0.115)
