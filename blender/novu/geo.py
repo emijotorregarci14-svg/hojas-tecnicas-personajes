@@ -108,11 +108,11 @@ def perfil(est, z_cintura, z_rocker, n_puntos=20):
     z_roc = max(z_rocker, z_bot + 0.020)
     z_cint = min(max(z_cintura, z_roc + 0.010), z_top - 0.030)
     z_rail = min(max(z_top - 0.085, z_cint + 0.015), z_top - 0.008)
-    # El vidrio ocupa la mayor parte de la banda: el marco negro queda
-    # como una franja fina justo bajo el borde de techo. En la ficha el
-    # cristal llega hasta 1,07 m y el remate negro ocupa los 0,11 m
-    # siguientes, de ahí el 0,92.
-    z_mid = z_cint + 0.92 * (z_rail - z_cint)
+    # Reparto de la banda lateral, medido en la vista lateral de la ficha:
+    # el cristal llega hasta 1,00 m y sobre él hay una franja negra de 0,20 m
+    # hasta el techo (1,20 m). Con la cintura en 0,485 eso es 0,73 del
+    # desarrollo entre la cintura y el borde de techo.
+    z_mid = z_cint + 0.73 * (z_rail - z_cint)
     z_corona = min(max(z_top - 0.022, z_rail + 0.006), z_top - 0.002)
     # Bucles de soporte en la cintura: mantienen vivo el pliegue de la
     # línea de cintura, que en la ficha de catálogo es una arista marcada.

@@ -392,6 +392,13 @@ no se aplica aquí.
   mayúsculas de 0,076 m) y **ejes de rueda** a +0,885 / −0,915 m.
 - **Materiales**: techo negro mate (leía gris claro por el reflejo del fondo
   blanco) y LED cian con menos emisión (AgX los saturaba a blanco).
+- **Cristal semitransparente** (alfa 0,70): en la ficha las ventanillas leen
+  gris claro (190 sRGB) sobre el fondo blanco de la vista técnica y se ve el
+  interior en las vistas de estudio. Con el espejo opaco se quedaban en gris
+  medio.
+- **Franja negra del techo**: la ficha la tiene de 0,22 m (0,98 → 1,20 m) sobre
+  el cristal; el modelo tenía 0,07 m. Se ensancha el marco negro
+  (MARCO_SUPERIOR 0,105 → 0,240) para que el habitáculo lea negro.
 
 **Medido**
 - 2,6000 x 1,2999 x 1,1997 m (ver tabla 12.2), renderizado en 10 vistas.
@@ -400,8 +407,11 @@ no se aplica aquí.
 **Pendiente**
 - Cola más cuadrada: en la ficha el techo se mantiene hasta Y −0,95 m y luego
   cae de golpe; el modelo lo redondea ya desde Y −0,86 m (~12 cm de diferencia).
-- Cristal muy reflectante: en la ficha las ventanillas leen gris claro y el
-  habitáculo negro; en el modelo el cristal domina la lectura del lateral.
+- Parabrisas: en la vista lateral de la ficha la cabina delantera es negra
+  (el pilar A tapa el parabrisas); en el modelo el cristal del frontal se ve
+  desde el costado porque la corona de esas estaciones es demasiado ancha.
+- Zócalo negro bajo las puertas: la ficha lo tiene y el modelo no.
+- Cenefa de cuadros de dos filas (la ficha) en vez de una.
 - Portón trasero: la ficha lleva la banda negra con «NOVU» y «NOVU TAXI FREE.»
   sobre portón amarillo; el modelo deja la cola demasiado negra.
 - Replicar la hoja de catálogo completa (héroe + 11 variantes + tabla de specs).

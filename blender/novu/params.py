@@ -119,7 +119,9 @@ ESTACIONES = [
 Z_CINTURA = 0.485       # pliegue vivo de la sección (máximo de anchura)
 Z_CINTURA_VISIBLE = 0.623   # línea de cintura pintada (borde amarillo/negro)
 Z_ROCKER = 0.300        # remate del zócalo negro
-MARCO_SUPERIOR = 0.105  # franja negra sobre el vidrio
+# Franja negra sobre el vidrio. En la vista lateral de la ficha el cristal
+# llega hasta 0,98 m y de ahí al techo (1,20 m) hay una banda negra de 0,22 m.
+MARCO_SUPERIOR = 0.240
 # Cortes longitudinales de la banda de ventanillas (medidos en la vista lateral)
 Y_VENTANA = 0.86           # borde delantero del hueco de ventanilla
 Y_VENTANA_TRAS = -0.37     # borde trasero

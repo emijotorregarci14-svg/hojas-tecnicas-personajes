@@ -69,10 +69,13 @@ def libreria():
     # leía gris claro en vez de negra.
     m["M_ROOF"] = base("M_ROOF", P.COLOR_NEGRO_BRILLO, metallic=0.0, roughness=0.45,
                         spec=0.12)
-    # Cristal opaco y muy reflectante: se comporta como un espejo oscuro y
-    # lee gris claro sobre fondo blanco, como en la hoja tecnica.
-    m["M_GLASS"] = base("M_GLASS", P.COLOR_CRISTAL, metallic=0.0, roughness=0.05,
-                        alpha=1.0, ior=1.45, spec=0.75)
+    # Cristal SEMITRANSPARENTE: en la ficha las ventanillas leen gris claro
+    # (190 sRGB) sobre el fondo blanco de la vista tecnica y oscuro sobre el
+    # interior en las vistas de estudio. Con un espejo opaco se quedaba en
+    # gris medio; con alfa 0,70 se reproduce ese comportamiento sin dejar
+    # el habit%C3%A1culo como un descapotable.
+    m["M_GLASS"] = base("M_GLASS", P.COLOR_CRISTAL, metallic=0.0, roughness=0.08,
+                        alpha=0.70, ior=1.45, spec=0.60)
     # Con una emision de 6.0 el AgX la desaturaba y el LED salia blanco:
     # en la hoja de catalogo las tiras se leen cian.
     m["M_LED_CIAN"] = base("M_LED_CIAN", P.COLOR_CIAN, roughness=0.25,
