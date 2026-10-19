@@ -20,6 +20,10 @@ VISTAS = {
     "trasera":    dict(az=180, el=8, dist=8.4, focal=100, aim=(0, 0.00, 0.60)),
     "lateral":    dict(az=90, el=0, dist=12.0, focal=120, aim=(0, 0.00, 0.60)),
     "superior":   dict(az=0, el=88, dist=8.0, focal=85, aim=(0, 0.00, 0.60)),
+    # Detalles: primero plano del letrero y del frontal
+    "detalle_letrero": dict(az=8, el=18, dist=1.6, focal=85, aim=(0, -0.04, 1.25)),
+    "detalle_frontal": dict(az=22, el=12, dist=2.2, focal=85, aim=(0, 1.05, 0.45)),
+    "detalle_trasero": dict(az=186, el=10, dist=2.0, focal=85, aim=(0, -1.05, 0.52)),
 }
 
 
@@ -123,7 +127,7 @@ def luces(modo="estudio"):
     # nunca un reflejo blanco (era lo que rompia la lectura del cristal).
     _area("RIM", (-1.6, 3.8, 1.9), 380, 1.8, (1.0, 0.94, 0.86),
           (radians(74), 0, radians(205)), 'RECTANGLE', 1.1)
-    _area("STRIP", (0.6, 0.0, 4.6), 150, 0.8, (1, 1, 1),
+    _area("STRIP", (0.6, 0.0, 4.6), 95, 0.8, (1, 1, 1),
           (0, 0, 0), 'RECTANGLE', 2.6)
 
 

@@ -63,11 +63,21 @@ def _material_de_cara(seg, i, j, centro, estaciones):
     if tags == {"parabrisas", "techo"}:
         return "M_ROOF"
 
-    # Tapas de morro y cola (seg == -1): amarilla con paragolpes negro abajo
+    # Paragolpes: negro por debajo de la linea de faros, en todo el morro
+    if tags & FRONT_ZONE and cz < P.Z_PARAGOLPES:
+        return "M_MOLD"
+    # Paragolpes trasero: la cola se cierra en negro por debajo
+    if tags & {"cola"} and cz < P.Z_PARAGOLPES_TRAS:
+        return "M_MOLD"
+    # Banda negra del porton con la marca NOVU
+    if tags & {"cola"} and abs(cz - P.PORTON["z"]) < P.PORTON["alto"] * 0.5:
+        return "M_MOLD"
+
+    # Tapas de morro y cola (seg == -1)
     if seg < 0:
         z_bot = estaciones[i]["z_bot"]
         if cz < z_bot + 0.070:
-            return "M_MOLD"          # paragolpes
+            return "M_MOLD"          # paragolpes bajo
         return "M_BODY"
 
     if seg in SUELO or seg in SILL:
@@ -82,7 +92,9 @@ def _material_de_cara(seg, i, j, centro, estaciones):
         if cy < P.Y_PILAR_C:
             if P.Y_CUARTO[0] <= cy <= P.Y_CUARTO[1]:
                 return "M_GLASS"      # ventanilla del cuarto
-            return "M_BODY"           # cola
+            if cz > P.Z_LUNA:
+                return "M_GLASS"      # luna trasera
+            return "M_BODY"           # porton amarillo
         # Pilares C y B en negro
         if cy <= P.Y_VENTANA_TRAS:
             return "M_ROOF"
@@ -108,10 +120,12 @@ def _material_de_cara(seg, i, j, centro, estaciones):
     if seg in CROWN:
         if tags <= WINDSCREEN:
             return "M_GLASS"      # parabrisas
-        if tags <= REAR_ZONE:
+        if tags <= {"piloto_traseiro"}:
             return "M_GLASS"      # luna trasera
         if tags & FRONT_ZONE:
             return "M_BODY"       # capó amarillo
+        if tags & REAR_ZONE:
+            return "M_ROOF"        # parte alta del porton (negra)
         return "M_ROOF"           # techo negro
     return "M_BODY"
 
@@ -275,8 +289,9 @@ def luces(mats):
     for sx in (1, -1):
         barra = geo.caja_redondeada(
             f"{NOMBRE}_led_frontal_{sx}",
-            (sx * (led["x_frente"] - 0.19), led["y_frente"] - 0.012, led["z"]),
-            (0.38, led["grosor"], led["alto"]), 0.012, mats["M_LED_CIAN"], 3)
+            (sx * led["x_frontal"], led["y_frontal"], led["z"]),
+            (led["largo_frontal"], led["grosor"], led["alto"]), 0.012,
+            mats["M_LED_CIAN"], 3)
         piezas.append(barra)
 
     # Continuación por el costado
@@ -321,7 +336,7 @@ def letrero_techo(mats):
 
     texto = geo.texto_3d(
         f"{NOMBRE}_letrero_texto", s["texto"], s["alto"] * 0.68,
-        (0.0, s["y"] - s["fondo"] * 0.62, z_caja + s["alto"] * 0.5),
+        (0.0, s["y"] + s["fondo"] * 0.62, z_caja + s["alto"] * 0.5),
         (pi / 2, 0, pi), mats["M_TEXT"], extrude=0.002)
     piezas.append(texto)
     return piezas
@@ -338,6 +353,43 @@ def lidar(mats):
     return [base, ventana]
 
 
+def banda_cuadros(mats, cuerpo):
+    """Cenefa de cuadros negro y amarillo proyectada sobre el flanco.
+
+    Va justo bajo la línea de cintura, como en la hoja de catálogo, y es la
+    banda que separa el habitáculo negro de la rotulación de las puertas.
+    """
+    d = P.DAMERO
+    lado = d["lado"]
+    y0, y1 = d["y0"], d["y1"]
+    z0, z1 = d["z0"], d["z1"]
+    n_y = max(1, int(round((y0 - y1) / lado)))
+    n_z = max(1, int(round((z1 - z0) / lado)))
+    dy = (y0 - y1) / n_y
+    dz = (z1 - z0) / n_z
+
+    piezas = []
+    for sx in (1, -1):
+        verts, faces, idx = [], [], []
+        for j in range(n_z):
+            for i in range(n_y):
+                base = len(verts)
+                ya = y0 - i * dy
+                yb = ya - dy
+                za = z0 + j * dz
+                zb = za + dz
+                for (yy, zz) in ((ya, za), (ya, zb), (yb, zb), (yb, za)):
+                    verts.append((sx * d["x"], yy, zz))
+                faces.append((base, base + 1, base + 2, base + 3))
+                idx.append(0 if (i + j) % 2 == 0 else 1)
+        obj = geo.crear_malla(
+            f"{NOMBRE}_cuadros_{sx}", verts, faces,
+            [mats["M_LIVERY"], mats["M_BODY"]], idx)
+        geo.shrinkwrap(obj, cuerpo, eje='X', offset=0.004)
+        piezas.append(obj)
+    return piezas
+
+
 def rotulo_lateral(mats, cuerpo):
     """«NOVU TAXI FREE.» proyectado sobre el flanco."""
     r = P.ROTULO
@@ -345,8 +397,8 @@ def rotulo_lateral(mats, cuerpo):
     for sx in (1, -1):
         texto = geo.texto_3d(
             f"{NOMBRE}_rotulo_{sx}", r["texto"], r["alto"],
-            (sx * 0.72, r["y"], r["z"]), (pi / 2, 0, pi / 2), mats["M_LIVERY"],
-            extrude=0.004)
+            (sx * 0.72, r["y"], r["z"]), (pi / 2, 0, sx * pi / 2),
+            mats["M_LIVERY"], extrude=0.004)
         geo.shrinkwrap(texto, cuerpo, eje='X', offset=0.006)
         piezas.append(texto)
     return piezas
@@ -355,9 +407,48 @@ def rotulo_lateral(mats, cuerpo):
 def rotulo_novu(mats):
     """«NOVU» en la parrilla frontal."""
     texto = geo.texto_3d(
-        f"{NOMBRE}_novu", "NOVU", 0.085, (0.0, P.PARRILLA["y"] - 0.010, 0.395),
-        (pi / 2, 0, pi), mats["M_LED_CIAN"], extrude=0.003)
+        f"{NOMBRE}_novu", "NOVU", 0.062, (0.0, P.PARRILLA["y"] + 0.042, 0.402),
+        (pi / 2, 0, pi), mats["M_PLACA"], extrude=0.003)
     return [texto]
+
+
+def porton(mats, cuerpo):
+    """Porton trasero: banda negra con la marca NOVU, pilotos y rotulo.
+
+    Todo se proyecta sobre la cola con shrinkwrap, porque el porton es una
+    superficie curva y no un plano.
+    """
+    p = P.PORTON
+    piezas = []
+
+    texto = geo.texto_3d(
+        f"{NOMBRE}_porton_novu", "NOVU", p["alto"] * 0.78,
+        (0.0, p["y"] - 0.030, p["z"]), (pi / 2, 0, 0), mats["M_PLACA"],
+        extrude=0.003)
+    geo.shrinkwrap(texto, cuerpo, eje='Y', offset=0.0, sentido='neg')
+    texto.location.y -= 0.007
+    piezas.append(texto)
+
+    # Rotulo "NOVU TAXI FREE." sobre el porton amarillo
+    rot = geo.texto_3d(
+        f"{NOMBRE}_porton_rotulo", "NOVU TAXI FREE.", p["rotulo_alto"],
+        (0.0, p["y"] - 0.030, p["z"] - p["rotulo_offset"]), (pi / 2, 0, 0),
+        mats["M_LIVERY"], extrude=0.003)
+    geo.shrinkwrap(rot, cuerpo, eje='Y', offset=0.0, sentido='neg')
+    rot.location.y -= 0.007
+    piezas.append(rot)
+
+    # Pilotos rojos horizontales a los lados
+    for sx in (1, -1):
+        piloto = geo.caja_redondeada(
+            f"{NOMBRE}_porton_piloto_{sx}",
+            (sx * p["piloto_x"], p["y"] - 0.010, p["z"] + p["piloto_offset"]),
+            (p["piloto_ancho"], p["piloto_grosor"], p["piloto_alto"]), 0.012,
+            mats["M_LED_ROJO"], 3)
+        geo.shrinkwrap(piloto, cuerpo, eje='Y', offset=0.0, sentido='neg')
+        piloto.location.y -= 0.008
+        piezas.append(piloto)
+    return piezas
 
 
 def retrovisores(mats):
@@ -409,8 +500,10 @@ def construir():
     piezas += luces(mats)
     piezas += letrero_techo(mats)
     piezas += lidar(mats)
+    piezas += banda_cuadros(mats, cuerpo)
     piezas += rotulo_lateral(mats, cuerpo)
     piezas += rotulo_novu(mats)
+    piezas += porton(mats, cuerpo)
     piezas += retrovisores(mats)
     piezas += interior(mats)
 

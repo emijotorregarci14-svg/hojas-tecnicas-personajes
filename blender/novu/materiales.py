@@ -64,13 +64,14 @@ def libreria():
     m = {}
     m["M_BODY"] = base("M_BODY", P.COLOR_CARROCERIA, metallic=0.35, roughness=0.30)
     m["M_MOLD"] = base("M_MOLD", P.COLOR_NEGRO, metallic=0.0, roughness=0.55)
-    m["M_ROOF"] = base("M_ROOF", P.COLOR_NEGRO_BRILLO, metallic=0.05, roughness=0.28)
+    m["M_ROOF"] = base("M_ROOF", P.COLOR_NEGRO_BRILLO, metallic=0.05, roughness=0.11,
+                        spec=0.32)
     # Cristal opaco y muy reflectante: se comporta como un espejo oscuro y
     # lee gris claro sobre fondo blanco, como en la hoja tecnica.
     m["M_GLASS"] = base("M_GLASS", P.COLOR_CRISTAL, metallic=0.0, roughness=0.05,
                         alpha=1.0, ior=1.45, spec=0.75)
     m["M_LED_CIAN"] = base("M_LED_CIAN", P.COLOR_CIAN, roughness=0.25,
-                            emission=P.COLOR_LED, emission_strength=14.0)
+                            emission=P.COLOR_LED, emission_strength=6.0)
     m["M_LED_ROJO"] = base("M_LED_ROJO", P.COLOR_ROJO, roughness=0.25,
                             emission=P.COLOR_ROJO_EM, emission_strength=9.0)
     m["M_TIRE"] = base("M_TIRE", P.COLOR_RUEDA, metallic=0.0, roughness=0.82)
@@ -79,5 +80,6 @@ def libreria():
     m["M_SIGN"] = base("M_SIGN", P.COLOR_CARROCERIA, metallic=0.20, roughness=0.30)
     m["M_TEXT"] = base("M_TEXT", (0.01, 0.01, 0.01), metallic=0.0, roughness=0.45)
     m["M_LIVERY"] = base("M_LIVERY", (0.012, 0.012, 0.012), metallic=0.0, roughness=0.40)
+    m["M_PLACA"] = base("M_PLACA", (0.72, 0.74, 0.78), metallic=0.0, roughness=0.35)
     m["M_FLOOR"] = base("M_FLOOR", (0.020, 0.020, 0.022), metallic=0.0, roughness=0.35)
     return m

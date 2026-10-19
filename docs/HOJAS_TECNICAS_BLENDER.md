@@ -278,3 +278,69 @@ Una hoja se acepta si:
 ---
 
 *Especificación viva. Cualquier deviation debe anotarse aquí con su motivo.*
+
+---
+
+## 12. Flota NOVU — vehículo paramétrico (Python/Blender)
+
+Estado: **en construcción**. Sustituye a la generación por IA de los vehículos de
+la flota, que producían deformidades. La Biblia y las hojas de personajes
+quedan en pausa mientras tanto.
+
+### 12.1 Dónde vive
+
+```
+blender/novu/params.py     cotas medidas de la vista lateral, paleta, estaciones
+blender/novu/geo.py        perfil, loft, revolución, primitivas, subsurf, booleano,
+                           shrinkwrap y texto 3D
+blender/novu/materiales.py libreria M_* (nomenclatura comun con el otro pipeline)
+blender/novu/taxi.py       ensamblado: carrocería, ruedas, luces, letrero, rotulos
+blender/novu/estudio.py    9 vistas, fondos, luces, Cycles CPU + AgX
+blender/novu/render.py     CLI: --vista / --todas / --salida / --solo-medidas
+```
+
+### 12.2 Cotas medidas (NOVU TAXI FREE)
+
+| Magnitud | Objetivo | Medido |
+|---|---|---|
+| Longitud | 2,60 m | 2,6000 m |
+| Anchura | 1,30 m | 1,2999 m |
+| Altura de carrocería | 1,20 m | 1,1997 m |
+| Altura con letrero TAXI | — | 1,337 m |
+| Batalla | 1,80 m | 1,80 m (CARRIL_RUEDA_Y = 0,90) |
+| Radio de rueda | — | 0,275 m |
+
+**Decisión de cotas:** el 1,20 m de la ficha es la altura de la **carrocería**;
+el cartel TAXI es accesorio y sobresale. La hoja es una ilustración, no un plano
+a escala (el dibujo no respeta la proporción real 2,60/1,20/1,30), así que
+manda la tabla de specs: de la imagen solo se toma el lenguaje visual.
+
+### 12.3 Criterio de paridad con el otro agente
+
+`tools/blender_env/paridad_v54.py` es el arnés. La referencia vigente del otro
+agente es **ancho 1,2974 m** y **holgura −0,188 m** (Blender 4.3.2). El arnés
+solo puede ejecutarse cuando exista `medir_v54.py` en el entorno del otro
+agente: ese fichero no esta en ninguna rama de este repositorio.
+
+### 12.4 Aplicado / medido / pendiente
+
+**Aplicado**
+- Carrocería por loft de 20 estaciones con pliegue vivo de cintura.
+- Reparto de materiales por zona: carrocería amarilla, habitáculo negro,
+  cristal opaco y reflectante, pilares A/B/C, ventanilla de cuarto, luna.
+- Ruedas: neumático torneado, llanta y cinco radios dobles.
+- Letrero TAXI con texto 3D, módulo LiDAR cian, banda de cuadros, rótulo
+  «NOVU TAXI FREE.», placa NOVU frontal, faros LED cian, pilotos rojos,
+  retrovisores y paragolpes.
+- Validación de monotonía del perfil: evita el fallo silencioso por el que el
+  booleano de los pasos de rueda devolvía la carrocería vacía.
+
+**Medido**
+- 2,6000 x 1,2999 x 1,1997 m (ver tabla 12.2), renderizado en 9 vistas.
+
+**Pendiente**
+- Portón trasero más plano: el actual cae en rampa y deforma el texto proyectado.
+- Pasos de rueda marcados en negro.
+- Replicar la hoja de catálogo completa (héroe + 11 variantes + tabla de specs).
+- Paridad `medir_v54.py` con el otro agente.
+- Replicar la tabla de specs de la hoja de catálogo al formato del panel técnico.

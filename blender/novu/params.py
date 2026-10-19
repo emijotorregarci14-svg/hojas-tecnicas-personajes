@@ -25,8 +25,8 @@ LONGITUD = 2.60
 ANCHO = 1.30
 # El loft + subdivisión encoge la sección transversal ~2,2 %. Este factor
 # compensa esa pérdida para que la anchura final sea exactamente 1,30 m.
-# (Medido: w=0,650 -> 1,2802 m finales; 0,650 x 1,0154 -> 1,3000 m.)
-F_ANCHO = 1.0154
+# (Medido: w=0,650 -> 1,3146 m finales; 0,650 x 1,0041 -> 1,3000 m.)
+F_ANCHO = 1.0041
 ALTURA = 1.20
 BATTALA = 1.80
 RADIO_RUEDA = 0.275
@@ -67,9 +67,9 @@ ALFA_CRISTAL = 0.80                         # cristal oscuro ahumado (catálogo)
 # ---------------------------------------------------------------------------
 ESTACIONES = [
     # --- morro: gota corta y redondeada -------------------------------------
-    dict(y=+1.300, w=0.470, w_top=0.300, w_bot=0.395, z_bot=0.320, z_top=0.540, tag="morro"),
-    dict(y=+1.270, w=0.540, w_top=0.350, w_bot=0.450, z_bot=0.270, z_top=0.575, tag="morro"),
-    dict(y=+1.220, w=0.600, w_top=0.405, w_bot=0.505, z_bot=0.215, z_top=0.605, tag="morro"),
+    dict(y=+1.300, w=0.505, w_top=0.330, w_bot=0.420, z_bot=0.335, z_top=0.560, tag="morro"),
+    dict(y=+1.270, w=0.560, w_top=0.375, w_bot=0.470, z_bot=0.275, z_top=0.595, tag="morro"),
+    dict(y=+1.220, w=0.612, w_top=0.420, w_bot=0.520, z_bot=0.220, z_top=0.618, tag="morro"),
     # --- capó: muy corto, sube hasta la base del parabrisas -----------------
     dict(y=+1.160, w=0.630, w_top=0.450, w_bot=0.538, z_bot=0.185, z_top=0.622, tag="capo"),
     dict(y=+1.090, w=0.645, w_top=0.488, w_bot=0.550, z_bot=0.168, z_top=0.632, tag="capo"),
@@ -81,29 +81,29 @@ ESTACIONES = [
     dict(y=+0.710, w=0.650, w_top=0.556, w_bot=0.560, z_bot=0.158, z_top=0.940, tag="parabrisas"),
     dict(y=+0.630, w=0.650, w_top=0.560, w_bot=0.560, z_bot=0.158, z_top=1.020, tag="parabrisas"),
     dict(y=+0.560, w=0.650, w_top=0.562, w_bot=0.560, z_bot=0.158, z_top=1.095, tag="parabrisas"),
-    dict(y=+0.485, w=0.650, w_top=0.545, w_bot=0.560, z_bot=0.158, z_top=1.175, tag="parabrisas"),
+    dict(y=+0.485, w=0.650, w_top=0.545, w_bot=0.560, z_bot=0.158, z_top=1.180, tag="parabrisas"),
     # --- techo: largo y ligeramente abombado --------------------------------
-    dict(y=+0.440, w=0.650, w_top=0.542, w_bot=0.560, z_bot=0.158, z_top=1.196, tag="techo"),
-    dict(y=+0.340, w=0.650, w_top=0.541, w_bot=0.560, z_bot=0.158, z_top=1.200, tag="techo"),
-    dict(y=+0.280, w=0.650, w_top=0.541, w_bot=0.560, z_bot=0.158, z_top=1.200, tag="pilar_b"),
-    dict(y=+0.210, w=0.650, w_top=0.540, w_bot=0.560, z_bot=0.158, z_top=1.200, tag="pilar_b"),
-    dict(y=+0.100, w=0.650, w_top=0.540, w_bot=0.560, z_bot=0.158, z_top=1.200, tag="techo"),
-    dict(y=-0.100, w=0.650, w_top=0.540, w_bot=0.560, z_bot=0.158, z_top=1.200, tag="techo"),
-    dict(y=-0.300, w=0.650, w_top=0.540, w_bot=0.560, z_bot=0.158, z_top=1.200, tag="techo"),
-    dict(y=-0.450, w=0.650, w_top=0.540, w_bot=0.560, z_bot=0.158, z_top=1.200, tag="techo"),
+    dict(y=+0.440, w=0.650, w_top=0.542, w_bot=0.560, z_bot=0.158, z_top=1.203, tag="techo"),
+    dict(y=+0.340, w=0.650, w_top=0.541, w_bot=0.560, z_bot=0.158, z_top=1.207, tag="techo"),
+    dict(y=+0.280, w=0.650, w_top=0.541, w_bot=0.560, z_bot=0.158, z_top=1.207, tag="pilar_b"),
+    dict(y=+0.210, w=0.650, w_top=0.540, w_bot=0.560, z_bot=0.158, z_top=1.207, tag="pilar_b"),
+    dict(y=+0.100, w=0.650, w_top=0.540, w_bot=0.560, z_bot=0.158, z_top=1.207, tag="techo"),
+    dict(y=-0.100, w=0.650, w_top=0.540, w_bot=0.560, z_bot=0.158, z_top=1.207, tag="techo"),
+    dict(y=-0.300, w=0.650, w_top=0.540, w_bot=0.560, z_bot=0.158, z_top=1.207, tag="techo"),
+    dict(y=-0.450, w=0.650, w_top=0.540, w_bot=0.560, z_bot=0.158, z_top=1.207, tag="techo"),
     # --- pilar C ancho y ventanilla de cuarto --------------------------------
-    dict(y=-0.550, w=0.650, w_top=0.540, w_bot=0.559, z_bot=0.158, z_top=1.195, tag="pilar_c"),
-    dict(y=-0.650, w=0.650, w_top=0.538, w_bot=0.557, z_bot=0.160, z_top=1.175, tag="pilar_c"),
-    dict(y=-0.780, w=0.648, w_top=0.520, w_bot=0.552, z_bot=0.166, z_top=1.160, tag="pilar_c"),
+    dict(y=-0.550, w=0.650, w_top=0.540, w_bot=0.559, z_bot=0.158, z_top=1.200, tag="pilar_c"),
+    dict(y=-0.650, w=0.650, w_top=0.538, w_bot=0.557, z_bot=0.160, z_top=1.180, tag="pilar_c"),
+    dict(y=-0.780, w=0.648, w_top=0.520, w_bot=0.552, z_bot=0.166, z_top=1.165, tag="pilar_c"),
     # --- luna trasera y cola redondeada --------------------------------------
     dict(y=-0.860, w=0.640, w_top=0.522, w_bot=0.545, z_bot=0.175, z_top=1.150, tag="piloto_traseiro"),
-    dict(y=-0.930, w=0.636, w_top=0.510, w_bot=0.538, z_bot=0.182, z_top=1.100, tag="piloto_traseiro"),
-    dict(y=-1.010, w=0.628, w_top=0.490, w_bot=0.528, z_bot=0.192, z_top=1.020, tag="piloto_traseiro"),
-    dict(y=-1.090, w=0.612, w_top=0.455, w_bot=0.512, z_bot=0.212, z_top=0.900, tag="cola"),
-    dict(y=-1.160, w=0.588, w_top=0.415, w_bot=0.488, z_bot=0.245, z_top=0.780, tag="cola"),
-    dict(y=-1.225, w=0.550, w_top=0.360, w_bot=0.450, z_bot=0.288, z_top=0.650, tag="cola"),
-    dict(y=-1.270, w=0.505, w_top=0.305, w_bot=0.405, z_bot=0.330, z_top=0.545, tag="cola"),
-    dict(y=-1.300, w=0.455, w_top=0.255, w_bot=0.365, z_bot=0.372, z_top=0.450, tag="cola"),
+    dict(y=-0.930, w=0.640, w_top=0.512, w_bot=0.538, z_bot=0.182, z_top=1.100, tag="piloto_traseiro"),
+    dict(y=-1.010, w=0.634, w_top=0.500, w_bot=0.528, z_bot=0.192, z_top=1.030, tag="piloto_traseiro"),
+    dict(y=-1.090, w=0.626, w_top=0.478, w_bot=0.512, z_bot=0.212, z_top=0.960, tag="cola"),
+    dict(y=-1.160, w=0.610, w_top=0.450, w_bot=0.488, z_bot=0.245, z_top=0.880, tag="cola"),
+    dict(y=-1.225, w=0.585, w_top=0.405, w_bot=0.450, z_bot=0.290, z_top=0.780, tag="cola"),
+    dict(y=-1.270, w=0.550, w_top=0.355, w_bot=0.405, z_bot=0.335, z_top=0.700, tag="cola"),
+    dict(y=-1.300, w=0.505, w_top=0.310, w_bot=0.378, z_bot=0.395, z_top=0.640, tag="cola"),
 ]
 
 # Alturas clave del perfil transversal
@@ -126,27 +126,37 @@ Y_CUARTO = (-0.86, -0.62)  # ventanilla pequeña del cuarto trasero
 # convención que el máster del taxi v38: la cota "1,20 m" de la ficha es la altura
 # de carrocería, no la altura con accesorios. La ilustración de la hoja dibuja el
 # cartel algo más alto (~11% del total), pero manda la convención del máster.
-SIGN = dict(y=-0.040, z=1.200, ancho=0.400, alto=0.062, fondo=0.070,
-            texto="TAXI", color=COLOR_CARROCERIA, z_base=0.015)
+# Letrero TAXI de techo: en la ficha sobresale ~0,13 m sobre la carrocería
+SIGN = dict(y=-0.040, z=1.200, ancho=0.420, alto=0.100, fondo=0.075,
+            texto="TAXI", color=COLOR_CARROCERIA, z_base=0.022)
 
 # Módulo LiDAR (cuadrado cian del techo)
-LIDAR = dict(y=+0.020, z=1.202, lado=0.075, alto=0.020)
+LIDAR = dict(y=+0.170, z=1.202, lado=0.075, alto=0.020)
 
 # Tiras LED cian: frontal en las esquinas + continuidad por el costado
-LED = dict(z=0.455, x=0.630, y0=+0.980, y1=+1.245, grosor=0.028, alto=0.028,
-           x_frente=0.520, y_frente=1.290)
+LED = dict(z=0.505, x=0.600, y0=+1.120, y1=+1.262, grosor=0.024, alto=0.024,
+           x_frontal=0.275, y_frontal=1.288, largo_frontal=0.270)
 
 # Pilotos traseros rojos (esquina trasera, verticales)
-PILOTO = dict(x=0.520, y=-1.268, z0=0.470, z1=0.680, grosor=0.032, ancho=0.085)
+PILOTO = dict(x=0.420, y=-1.252, z0=0.395, z1=0.520, grosor=0.030, ancho=0.075)
 
 # Parrilla frontal negra + rótulo NOVU
-PARRILLA = dict(y=1.292, z0=0.320, z1=0.540, half_x=0.250)
+PARRILLA = dict(y=1.262, z0=0.330, z1=0.470, half_x=0.210)
+Z_PARAGOLPES = 0.478         # por debajo de esta altura el morro es negro
+Z_PARAGOLPES_TRAS = 0.285    # por debajo de esta altura la cola es negra
+Z_LUNA = 0.760                # por encima de esta altura el porton es cristal
+
+# Porton trasero: banda negra con NOVU, pilotos rojos y rotulo
+PORTON = dict(y=-1.262, z=0.505, ancho=0.380, alto=0.085,
+              rotulo_alto=0.044, rotulo_offset=0.060,
+              piloto_x=0.225, piloto_ancho=0.130, piloto_alto=0.038,
+              piloto_grosor=0.026, piloto_offset=0.058)
 
 # Banda de damero (cenefa de cuadros bajo la ventanilla)
-DAMERO = dict(z0=0.545, z1=0.630, y0=+0.760, y1=-0.980, x=0.648, lado=0.055)
+DAMERO = dict(z0=0.545, z1=0.630, y0=+0.800, y1=-0.620, x=0.655, lado=0.0425)
 
 # Rótulo lateral "NOVU TAXI FREE."
-ROTULO = dict(y=-0.130, z=0.400, alto=0.115, texto="NOVU TAXI FREE.")
+ROTULO = dict(y=+0.050, z=0.400, alto=0.115, texto="NOVU TAXI FREE.")
 
 # Retrovisores
 RETROVISOR = dict(x=0.640, y=+0.760, z=0.720, ancho=0.075, alto=0.055, fondo=0.115)

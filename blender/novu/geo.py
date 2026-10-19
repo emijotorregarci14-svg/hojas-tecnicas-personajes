@@ -287,7 +287,12 @@ def revolucion(nombre, perfil, centro, material=None, segmentos=48, eje='X'):
 
 def texto_3d(nombre, cuerpo, tam, centro, rotacion, material=None,
              extrude=0.004, align='CENTER'):
-    """Texto convertido a malla (para rótulos y el letrero TAXI)."""
+    """Texto convertido a malla (para rótulos y el letrero TAXI).
+
+    Tras la conversion se recentra la malla en su origen: el alineado de
+    Blender no centra de forma fiable cuando cambian el cuerpo y el tamaño,
+    y los rótulos deben caer exactamente en el punto pedido.
+    """
     bpy.ops.object.text_add(location=centro, rotation=rotacion)
     obj = bpy.context.object
     obj.name = nombre
@@ -300,6 +305,27 @@ def texto_3d(nombre, cuerpo, tam, centro, rotacion, material=None,
     bpy.ops.object.convert(target='MESH')
     obj = bpy.context.object
     obj.name = nombre
+
+    # Recentrado y altura de linea: Blender no mantiene el alto de las
+    # mayusculas al cambiar cuerpo y tamano, asi que se fuerza aqui
+    # (0,72 em es el alto tipico de una mayuscula) y se centra la malla.
+    if len(obj.data.vertices):
+        xs = [v.co.x for v in obj.data.vertices]
+        ys = [v.co.y for v in obj.data.vertices]
+        alto = max(ys) - min(ys)
+        if alto > 1e-6:
+            k = (tam * 0.72) / alto
+            for v in obj.data.vertices:
+                v.co.y *= k
+        xs = [v.co.x for v in obj.data.vertices]
+        ys = [v.co.y for v in obj.data.vertices]
+        cx = (min(xs) + max(xs)) * 0.5
+        cy = (min(ys) + max(ys)) * 0.5
+        for v in obj.data.vertices:
+            v.co.x -= cx
+            v.co.y -= cy
+    obj.location = centro
+
     if material:
         obj.data.materials.append(material)
     return obj
@@ -335,16 +361,21 @@ def booleano(obj, cortador, operacion='DIFFERENCE'):
     return m
 
 
-def shrinkwrap(obj, destino, eje='X', offset=0.006):
-    """Proyecta el objeto sobre `destino` a lo largo de `eje` (para rótulos)."""
+def shrinkwrap(obj, destino, eje='X', offset=0.006, sentido='ambos'):
+    """Proyecta el objeto sobre `destino` a lo largo de `eje` (para rótulos).
+
+    `sentido` limita la dirección del rayo: 'neg', 'pos' o 'ambos'. Importa
+    cuando el objeto a proyectar está dentro de la carrocería (por ejemplo el
+    portón trasero): con 'ambos' se pegaría a la cara interior.
+    """
     m = obj.modifiers.new("shrinkwrap", 'SHRINKWRAP')
     m.target = destino
     m.wrap_method = 'PROJECT'
     m.use_project_x = (eje == 'X')
     m.use_project_y = (eje == 'Y')
     m.use_project_z = (eje == 'Z')
-    m.use_negative_direction = True
-    m.use_positive_direction = True
+    m.use_negative_direction = (sentido in ('ambos', 'neg'))
+    m.use_positive_direction = (sentido in ('ambos', 'pos'))
     m.offset = offset
     return m
 
